@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://fbywgpksk4j0"]
+
+[ext_resource type="Script" path="res://Scenes/Wobbler.gd" id="1_4nrot"]
+[ext_resource type="FastNoiseLite" uid="uid://b7jddsi7ppo6h" path="res://Misc/Wobbler Noise.tres" id="2_2k6ky"]
+
+[node name="Wobbler" type="Node"]
+script = ExtResource("1_4nrot")
+noise = ExtResource("2_2k6ky")

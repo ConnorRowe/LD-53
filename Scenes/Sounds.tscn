@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://df8ilwhn4g3v6"]
+
+[ext_resource type="Script" path="res://Scenes/Sounds.gd" id="1_qq76e"]
+[ext_resource type="AudioStream" uid="uid://58hsu1rrs0bc" path="res://Sounds/Pop.wav" id="2_cqo33"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2r0ka"]
+streams_count = 1
+random_pitch = 1.4
+random_volume_offset_db = 1.0
+stream_0/stream = ExtResource("2_cqo33")
+stream_0/weight = 1.0
+
+[node name="Sounds" type="Node"]
+script = ExtResource("1_qq76e")
+
+[node name="Pop Player" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_2r0ka")
+bus = &"SFX"

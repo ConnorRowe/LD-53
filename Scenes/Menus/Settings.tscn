@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://7aq1v44q7bwm"]
+
+[ext_resource type="Theme" uid="uid://cbkk2yn7dbh5n" path="res://Scenes/Menus/Theme.tres" id="1_q7b03"]
+[ext_resource type="FontFile" uid="uid://cvn14mvxj3shq" path="res://Font/ConsKindaBubbly.ttf" id="2_8cfml"]
+[ext_resource type="Script" path="res://Scenes/Menus/Settings.gd" id="2_my8s4"]
+
+[node name="Settings" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -184.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_q7b03")
+script = ExtResource("2_my8s4")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.847059, 0.329412, 0.321569, 1)
+theme_override_fonts/font = ExtResource("2_8cfml")
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Master Volume"
+horizontal_alignment = 1
+
+[node name="Master HSlider" type="HSlider" parent="."]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="Music HSlider" type="HSlider" parent="."]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 2
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="SFX HSlider" type="HSlider" parent="."]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="Fullscreen CheckButton" type="CheckButton" parent="."]
+layout_mode = 2
+text = "Fullscreen"
+flat = true
+
+[connection signal="value_changed" from="Master HSlider" to="." method="_on_master_h_slider_value_changed"]
+[connection signal="value_changed" from="Music HSlider" to="." method="_on_music_h_slider_value_changed"]
+[connection signal="value_changed" from="SFX HSlider" to="." method="_on_sfx_h_slider_value_changed"]
+[connection signal="toggled" from="Fullscreen CheckButton" to="." method="_on_fullscreen_check_button_toggled"]
