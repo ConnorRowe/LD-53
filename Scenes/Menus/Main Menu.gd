@@ -2,8 +2,8 @@ extends Control
 
 
 func _on_button_pressed():
-	$Icon/Wobbler.shake(2)
+	$Icon/Wobbler.wobble(2)
 
 
 func _on_button_mouse_entered():
-	$Button/Wobbler.shake(1)
+	$Button/Wobbler.wobble(1)

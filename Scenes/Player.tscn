@@ -1,0 +1,103 @@
+[gd_scene load_steps=12 format=3 uid="uid://bs45k4rpv0jr8"]
+
+[ext_resource type="Texture2D" uid="uid://bgwynpfkp56s7" path="res://Textures/skamtebord.png" id="1_2ddhg"]
+[ext_resource type="Script" path="res://Scenes/Player.gd" id="1_x0uyo"]
+[ext_resource type="Texture2D" uid="uid://deoe2woaah1jn" path="res://Textures/jeej.png" id="2_k2qar"]
+[ext_resource type="PackedScene" uid="uid://fbywgpksk4j0" path="res://Scenes/Wobbler.tscn" id="3_hj00f"]
+[ext_resource type="Texture2D" uid="uid://516qtx2v84mw" path="res://Textures/dust.png" id="5_5h1ls"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_42bwv"]
+radius = 2.23607
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohqno"]
+size = Vector2(16, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6pxqh"]
+size = Vector2(20, 6)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qfp5y"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yhd7q"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ixvmo"]
+lifetime_randomness = 0.25
+emission_shape = 1
+emission_sphere_radius = 2.0
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(0, -25, 0)
+initial_velocity_min = 31.91
+initial_velocity_max = 42.55
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 11.7
+damping_max = 37.23
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="Player" type="CharacterBody2D"]
+floor_stop_on_slope = false
+floor_max_angle = 1.13446
+script = ExtResource("1_x0uyo")
+
+[node name="Skamtebord" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("1_2ddhg")
+hframes = 2
+
+[node name="Jiji" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_k2qar")
+offset = Vector2(1, -7)
+
+[node name="Wobbler" parent="Jiji" instance=ExtResource("3_hj00f")]
+max_angle = 0.3
+max_translation = Vector2(2, 2)
+max_scale = Vector2(0.2, 0.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_42bwv")
+
+[node name="Board Area2D" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ohqno")
+
+[node name="Rail Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rail Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_6pxqh")
+
+[node name="Pickup Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup Area2D"]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_qfp5y")
+
+[node name="Dust Particles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_yhd7q")
+position = Vector2(0, 1)
+emitting = false
+amount = 7
+process_material = SubResource("ParticleProcessMaterial_ixvmo")
+texture = ExtResource("5_5h1ls")
+lifetime = 1.5
+
+[connection signal="area_entered" from="Board Area2D" to="." method="_on_board_area_2d_area_entered"]
+[connection signal="body_entered" from="Rail Area2D" to="." method="_on_rail_area_2d_body_entered"]
+[connection signal="area_entered" from="Pickup Area2D" to="." method="_on_pickup_area_2d_area_entered"]

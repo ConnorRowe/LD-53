@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqppsekdj4sp1"]
+
+[ext_resource type="Theme" uid="uid://cbkk2yn7dbh5n" path="res://Scenes/Menus/Theme.tres" id="1_o7yj8"]
+[ext_resource type="Script" path="res://Scenes/Menus/Button.gd" id="2_tgsrf"]
+[ext_resource type="PackedScene" uid="uid://fbywgpksk4j0" path="res://Scenes/Wobbler.tscn" id="3_16ltg"]
+
+[node name="Back" type="Button"]
+offset_left = 254.0
+offset_top = 123.0
+offset_right = 302.0
+offset_bottom = 171.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+theme = ExtResource("1_o7yj8")
+text = "Back"
+script = ExtResource("2_tgsrf")
+
+[node name="Wobbler" parent="." instance=ExtResource("3_16ltg")]
+max_scale = Vector2(0.1, 0.1)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

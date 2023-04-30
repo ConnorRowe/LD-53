@@ -50,5 +50,5 @@ func _process(delta):
 		
 		parent.scale = initial_scale + scale
 
-func shake(strength: float):
+func wobble(strength: float):
 	trauma = minf(trauma + strength, 1)

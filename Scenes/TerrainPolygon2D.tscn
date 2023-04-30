@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8gr0tgbbfku"]
+
+[ext_resource type="Script" path="res://Scenes/TerrainPolygon2D.gd" id="1_qcjke"]
+
+[node name="TerrainPolygon2D" type="Polygon2D"]
+color = Color(0.227451, 0.0823529, 0.611765, 1)
+script = ExtResource("1_qcjke")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 1.0
+default_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
+begin_cap_mode = 1
+end_cap_mode = 1

@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://cl1twgw2k0jjq"]
+
+[ext_resource type="Shader" path="res://Shaders/Checkpoint.gdshader" id="1_4n57s"]
+[ext_resource type="Script" path="res://Scenes/Checkpoint.gd" id="1_35m2a"]
+[ext_resource type="Texture2D" uid="uid://cs88olop4d8rd" path="res://Textures/checkpoint_bg_effect.png" id="2_vmkk0"]
+[ext_resource type="Texture2D" uid="uid://b84ctl5bk5grk" path="res://Textures/checkpoint_deactivated.png" id="3_r0q4q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wi4gt"]
+shader = ExtResource("1_4n57s")
+shader_parameter/colour = Color(0.933333, 0.721569, 0.705882, 1)
+shader_parameter/threshhold = 0.05
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a6xft"]
+radius = 16.0312
+
+[node name="Checkpoint" type="Node2D"]
+script = ExtResource("1_35m2a")
+
+[node name="BG" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_wi4gt")
+texture = ExtResource("2_vmkk0")
+
+[node name="FG" type="Sprite2D" parent="."]
+texture = ExtResource("3_r0q4q")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_a6xft")
