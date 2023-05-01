@@ -1,0 +1,145 @@
+[gd_scene load_steps=12 format=3 uid="uid://dc0kdaxccejb4"]
+
+[ext_resource type="Theme" uid="uid://cbkk2yn7dbh5n" path="res://Scenes/Menus/Theme.tres" id="1_02h8x"]
+[ext_resource type="Script" path="res://Scenes/Menus/Level Complete.gd" id="2_i2jpv"]
+[ext_resource type="FontFile" uid="uid://ciuu7b2wvtap2" path="res://Font/ConsKindaBubblyBold.ttf" id="3_4muhl"]
+[ext_resource type="Texture2D" uid="uid://cgdo6v2oy1b2" path="res://Textures/postmaster.png" id="3_iaxbg"]
+[ext_resource type="Texture2D" uid="uid://y30fj3ar6co7" path="res://Textures/confetti.png" id="4_6lvlt"]
+[ext_resource type="PackedScene" uid="uid://bqppsekdj4sp1" path="res://Scenes/Button.tscn" id="5_jgjqj"]
+[ext_resource type="AudioStream" uid="uid://balponlnxyt1h" path="res://Sounds/Nev purr.ogg" id="7_r5hjw"]
+[ext_resource type="Texture2D" uid="uid://bgwynpfkp56s7" path="res://Textures/skamtebord.png" id="8_3xb2h"]
+[ext_resource type="Texture2D" uid="uid://deoe2woaah1jn" path="res://Textures/jeej.png" id="9_gdp1p"]
+[ext_resource type="PackedScene" uid="uid://fbywgpksk4j0" path="res://Scenes/Wobbler.tscn" id="10_bvxq8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kuwn7"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Level Compelte" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_02h8x")
+script = ExtResource("2_i2jpv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.0823529, 0.611765, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(233, 50.5)
+texture = ExtResource("3_iaxbg")
+hframes = 2
+
+[node name="Confetti3" type="CPUParticles2D" parent="Sprite2D"]
+z_index = 1
+material = SubResource("CanvasItemMaterial_kuwn7")
+position = Vector2(-4, 5.5)
+amount = 120
+lifetime = 4.0
+explosiveness = 1.0
+texture = ExtResource("4_6lvlt")
+emission_shape = 1
+emission_sphere_radius = 4.0
+particle_flag_align_y = true
+direction = Vector2(0, -1)
+gravity = Vector2(0, 735)
+initial_velocity_min = 173.46
+initial_velocity_max = 397.95
+damping_min = 24.49
+damping_max = 48.98
+anim_offset_max = 1.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 64.0
+offset_right = 117.0
+offset_bottom = 90.0
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 62.5
+offset_right = 306.0
+offset_bottom = 88.5
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 92.0
+offset_bottom = 30.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
+theme_override_fonts/font = ExtResource("3_4muhl")
+text = "Job Done!"
+
+[node name="Label" type="Label" parent="Label2"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 75.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource("3_4muhl")
+text = "Job Done!"
+
+[node name="Score Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 69.0
+offset_right = 53.0
+offset_bottom = 85.0
+text = "Score: xxxx"
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 66.5
+offset_right = 269.0
+offset_bottom = 82.5
+text = "Great work Jiji!"
+
+[node name="Back" parent="." instance=ExtResource("5_jgjqj")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 122.0
+offset_right = 117.0
+offset_bottom = 170.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_r5hjw")
+volume_db = 6.618
+autoplay = true
+bus = &"SFX"
+
+[node name="Fake jeej" type="Node2D" parent="."]
+position = Vector2(197, 145)
+scale = Vector2(2, 2)
+
+[node name="Skamtebord" type="Sprite2D" parent="Fake jeej"]
+position = Vector2(-9, -6)
+texture = ExtResource("8_3xb2h")
+centered = false
+hframes = 2
+
+[node name="Jiji" type="Sprite2D" parent="Fake jeej"]
+position = Vector2(0, -3)
+texture = ExtResource("9_gdp1p")
+centered = false
+offset = Vector2(-7, -14)
+
+[node name="Wobbler" parent="Fake jeej/Jiji" instance=ExtResource("10_bvxq8")]
+max_angle = 0.3
+max_translation = Vector2(2, 2)
+max_scale = Vector2(0.2, 0.2)
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

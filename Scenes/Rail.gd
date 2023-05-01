@@ -12,15 +12,17 @@ func _ready():
 func make_polygon():
 	var points_copy = points.duplicate()
 	var h = Vector2(0, height)
-	points_copy.insert(0, points_copy[0] + h)
-	points_copy.append(points_copy[len(points_copy) - 1] + h)
+	
+	for i in range(len(points)-1, -1, -1):
+		points_copy.append(points_copy[i] + h)
+		
 	$StaticBody2D/CollisionPolygon2D.polygon = points_copy
 	
 	length = 0.0
 	for i in range(get_point_count() - 2):
 		length += get_point_position(i).distance_to(get_point_position(i + 1))
 	
-	$StaticBody2D/CollisionPolygon2D.one_way_collision = true
+	$StaticBody2D/CollisionPolygon2D.one_way_collision = false
 	
 
 func _on_visibility_changed():
@@ -54,4 +56,5 @@ func is_rail_below_position(global_pos: Vector2):
 	var point_a = get_point_position(floored)
 	var point_b = get_point_position(mini(floored + 1, get_point_count() - 1))
 	var lerped = lerp(point_a, point_b, remainder)
+	print("is_rail_below_position: ", lerped.y > to_local(global_pos).y, " (", lerped.y, " < ", to_local(global_pos).y, ")")
 	return lerped.y > to_local(global_pos).y

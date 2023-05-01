@@ -4,12 +4,11 @@
 
 [node name="Rail" type="Line2D"]
 z_index = -1
-points = PackedVector2Array(97, 143, 156, 140, 209, 127, 250.425, 131.9, 278.459, 135.216, 302, 138)
 width = 2.0
 default_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
 round_precision = 2
 script = ExtResource("1_c3vui")
-height = 5.0
+height = 24.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2

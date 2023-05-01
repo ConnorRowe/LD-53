@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dpplifx0q2qol"]
+[gd_scene load_steps=29 format=3 uid="uid://dpplifx0q2qol"]
 
 [ext_resource type="Texture2D" uid="uid://cgdo6v2oy1b2" path="res://Textures/postmaster.png" id="1_dxpu0"]
 [ext_resource type="Script" path="res://Scenes/Menus/Level Selection.gd" id="1_pxgj5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://djpu1os2p1kqv" path="res://Textures/mug.png" id="3_lx2w0"]
 [ext_resource type="Theme" uid="uid://cbkk2yn7dbh5n" path="res://Scenes/Menus/Theme.tres" id="4_p3m8o"]
 [ext_resource type="PackedScene" uid="uid://bqppsekdj4sp1" path="res://Scenes/Button.tscn" id="5_bepwo"]
+[ext_resource type="Texture2D" uid="uid://cfifeo2hrd2nt" path="res://Textures/down_arrow.png" id="7_k1kf4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_57sxy"]
 atlas = ExtResource("1_dxpu0")
@@ -65,17 +66,97 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8jlp"]
-content_margin_left = 1.0
-content_margin_top = 1.0
-content_margin_right = 1.0
-content_margin_bottom = 1.0
-bg_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.847059, 0.329412, 0.321569, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn8d2"]
+atlas = ExtResource("7_k1kf4")
+region = Rect2(0, 0, 26, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mm6f"]
+atlas = ExtResource("7_k1kf4")
+region = Rect2(26, 0, 26, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhbx6"]
+atlas = ExtResource("7_k1kf4")
+region = Rect2(52, 0, 26, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljc34"]
+atlas = ExtResource("7_k1kf4")
+region = Rect2(78, 0, 26, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xby12"]
+atlas = ExtResource("7_k1kf4")
+region = Rect2(104, 0, 26, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c011x"]
+atlas = ExtResource("7_k1kf4")
+region = Rect2(130, 0, 26, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tilj1"]
+atlas = ExtResource("7_k1kf4")
+region = Rect2(156, 0, 26, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puiad"]
+atlas = ExtResource("7_k1kf4")
+region = Rect2(182, 0, 26, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjh1c"]
+atlas = ExtResource("7_k1kf4")
+region = Rect2(208, 0, 26, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw4ev"]
+atlas = ExtResource("7_k1kf4")
+region = Rect2(234, 0, 26, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pk63"]
+atlas = ExtResource("7_k1kf4")
+region = Rect2(260, 0, 26, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c3hg"]
+atlas = ExtResource("7_k1kf4")
+region = Rect2(286, 0, 26, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ewhe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qn8d2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mm6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhbx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljc34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xby12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c011x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tilj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puiad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjh1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw4ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pk63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c3hg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [node name="Level Selection" type="Node2D"]
 script = ExtResource("1_pxgj5")
@@ -160,13 +241,14 @@ offset_left = 164.0
 offset_top = 119.0
 offset_right = 264.0
 offset_bottom = 167.0
+disabled = true
+text = "Start"
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 offset_top = 99.0
 offset_right = 158.0
 offset_bottom = 180.0
 theme = ExtResource("4_p3m8o")
-theme_override_styles/panel = SubResource("StyleBoxFlat_x8jlp")
 
 [node name="Speech Label" type="Label" parent="PanelContainer"]
 layout_mode = 2
@@ -175,9 +257,17 @@ text = "Mornin' Jeej"
 autowrap_mode = 3
 clip_text = true
 
+[node name="Arrow" type="AnimatedSprite2D" parent="."]
+position = Vector2(-9, -22)
+sprite_frames = SubResource("SpriteFrames_0ewhe")
+autoplay = "default"
+offset = Vector2(24, -2)
+
 [connection signal="pressed" from="Level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Level2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="Level3" to="." method="_on_level_3_pressed"]
 [connection signal="pressed" from="Level4" to="." method="_on_level_4_pressed"]
 [connection signal="pressed" from="Level5" to="." method="_on_level_5_pressed"]
 [connection signal="pressed" from="Level6" to="." method="_on_level_6_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]

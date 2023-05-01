@@ -1,18 +1,23 @@
-[gd_scene load_steps=21 format=3 uid="uid://ic6m16p33gd0"]
+[gd_scene load_steps=25 format=3 uid="uid://ic6m16p33gd0"]
 
-[ext_resource type="Shader" path="res://Shaders/Checkpoint.gdshader" id="1_dh558"]
 [ext_resource type="Script" path="res://Scenes/Postbox.gd" id="1_j3xij"]
-[ext_resource type="Texture2D" uid="uid://cs88olop4d8rd" path="res://Textures/checkpoint_bg_effect.png" id="2_fm5vk"]
+[ext_resource type="Shader" path="res://Shaders/Postbox.gdshader" id="2_0q1eb"]
+[ext_resource type="Texture2D" uid="uid://wlxv5acfpr6h" path="res://Textures/postbox_bg_effect.png" id="3_fmdny"]
 [ext_resource type="Texture2D" uid="uid://bgb634vvbgjns" path="res://Textures/postbox.png" id="3_tb8cy"]
 [ext_resource type="Texture2D" uid="uid://cfifeo2hrd2nt" path="res://Textures/down_arrow.png" id="4_ddkde"]
+[ext_resource type="PackedScene" uid="uid://fbywgpksk4j0" path="res://Scenes/Wobbler.tscn" id="5_ivrrp"]
+[ext_resource type="Texture2D" uid="uid://bgimtrif4whr0" path="res://Textures/pink_cloud.png" id="6_0aydu"]
+[ext_resource type="Texture2D" uid="uid://y30fj3ar6co7" path="res://Textures/confetti.png" id="7_a7hxh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x721b"]
-radius = 17.1172
+radius = 39.0512
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hcn3x"]
-shader = ExtResource("1_dh558")
-shader_parameter/colour = Color(0.933333, 0.721569, 0.705882, 1)
-shader_parameter/threshhold = 0.05
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kgwp4"]
+shader = ExtResource("2_0q1eb")
+shader_parameter/colour_a = Color(0.847059, 0.329412, 0.321569, 1)
+shader_parameter/colour_b = Color(0.933333, 0.721569, 0.705882, 1)
+shader_parameter/threshhold = 0.08
+shader_parameter/progress = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qn8d2"]
 atlas = ExtResource("4_ddkde")
@@ -106,11 +111,18 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ko0cd"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
 [node name="Postbox" type="Node2D"]
 z_index = -1
 script = ExtResource("1_j3xij")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 16.5)
 collision_layer = 4
 collision_mask = 4
 
@@ -119,18 +131,87 @@ position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_x721b")
 
 [node name="BG" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_hcn3x")
-position = Vector2(0, -15.5)
-texture = ExtResource("2_fm5vk")
+material = SubResource("ShaderMaterial_kgwp4")
+position = Vector2(0, 1.5)
+texture = ExtResource("3_fmdny")
 
 [node name="Postbox" type="Sprite2D" parent="."]
-position = Vector2(-13, -32)
+position = Vector2(-1, 13)
 texture = ExtResource("3_tb8cy")
 centered = false
+offset = Vector2(-12, -28.5)
 hframes = 2
 
+[node name="Wobbler" parent="Postbox" instance=ExtResource("5_ivrrp")]
+max_angle = 0.25
+max_scale = Vector2(0.4, 0.2)
+decay = 0.7
+
+[node name="Cloud" type="Sprite2D" parent="Postbox"]
+position = Vector2(0, 7)
+texture = ExtResource("6_0aydu")
+
 [node name="Arrow" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -55)
+position = Vector2(0, -38.5)
 sprite_frames = SubResource("SpriteFrames_7bwh8")
 autoplay = "default"
 frame_progress = 0.831749
+
+[node name="Confetti1" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_ko0cd")
+position = Vector2(0, 4)
+emitting = false
+amount = 60
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("7_a7hxh")
+emission_shape = 1
+emission_sphere_radius = 4.0
+particle_flag_align_y = true
+direction = Vector2(0, -1)
+gravity = Vector2(0, 735)
+initial_velocity_min = 173.46
+initial_velocity_max = 397.95
+damping_min = 24.49
+damping_max = 48.98
+
+[node name="Confetti2" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_ko0cd")
+position = Vector2(0, 4)
+emitting = false
+amount = 80
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("7_a7hxh")
+emission_shape = 1
+emission_sphere_radius = 4.0
+particle_flag_align_y = true
+direction = Vector2(0, -1)
+gravity = Vector2(0, 735)
+initial_velocity_min = 173.46
+initial_velocity_max = 397.95
+damping_min = 24.49
+damping_max = 48.98
+anim_offset_max = 0.4286
+
+[node name="Confetti3" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_ko0cd")
+position = Vector2(0, 4)
+emitting = false
+amount = 120
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("7_a7hxh")
+emission_shape = 1
+emission_sphere_radius = 4.0
+particle_flag_align_y = true
+direction = Vector2(0, -1)
+gravity = Vector2(0, 735)
+initial_velocity_min = 173.46
+initial_velocity_max = 397.95
+damping_min = 24.49
+damping_max = 48.98
+anim_offset_max = 1.0

@@ -1,18 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwiopopxqdt1r"]
+[gd_scene load_steps=4 format=3 uid="uid://dwiopopxqdt1r"]
 
 [ext_resource type="Script" path="res://Scenes/Level.gd" id="1_44xn3"]
 [ext_resource type="PackedScene" uid="uid://bs45k4rpv0jr8" path="res://Scenes/Player.tscn" id="1_aori0"]
 [ext_resource type="PackedScene" uid="uid://cpxqlwi423cxe" path="res://Scenes/GUI.tscn" id="2_ep6kg"]
-[ext_resource type="PackedScene" uid="uid://bj6dokmjafvc0" path="res://Scenes/Rail.tscn" id="2_jioal"]
-[ext_resource type="PackedScene" uid="uid://bt3tagxo7m5st" path="res://Scenes/Reverse Pad.tscn" id="3_r83ig"]
-[ext_resource type="PackedScene" uid="uid://cl1twgw2k0jjq" path="res://Scenes/Checkpoint.tscn" id="5_go6ma"]
-[ext_resource type="PackedScene" uid="uid://c8gr0tgbbfku" path="res://Scenes/TerrainPolygon2D.tscn" id="6_arnv0"]
-[ext_resource type="PackedScene" uid="uid://ic6m16p33gd0" path="res://Scenes/Postbox.tscn" id="7_x2ykw"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_44xn3")
-num_postboxes = 1
-envelope_types = PackedInt32Array(0, 0, 0, 0)
+envelope_types = PackedInt32Array(0, 0, 0)
 
 [node name="Background Layer" type="CanvasLayer" parent="."]
 layer = -1
@@ -31,47 +25,12 @@ color = Color(0.337255, 0.447059, 0.882353, 1)
 
 [node name="Post Boxes" type="Node2D" parent="."]
 
-[node name="Postbox" parent="Post Boxes" instance=ExtResource("7_x2ykw")]
-position = Vector2(181, 77)
-
 [node name="Player" parent="." instance=ExtResource("1_aori0")]
 position = Vector2(17, 89)
 
-[node name="Rail" parent="." instance=ExtResource("2_jioal")]
-position = Vector2(-32, 7)
-points = PackedVector2Array(87.6364, 151, 116.816, 146.756, 151, 140, 181.636, 132, 216, 118, 249.358, 128.161, 276.636, 137, 304.636, 145)
-
-[node name="Rail2" parent="." instance=ExtResource("2_jioal")]
-position = Vector2(57, -50)
-points = PackedVector2Array(178, 142, 217, 143, 246, 160)
-
-[node name="Rail3" parent="." instance=ExtResource("2_jioal")]
-position = Vector2(-75, -54)
-points = PackedVector2Array(155, 143, 185, 137, 217, 143)
-
-[node name="Reverse Pad" parent="." instance=ExtResource("3_r83ig")]
-position = Vector2(310, 153)
-
-[node name="Reverse Pad3" parent="." instance=ExtResource("3_r83ig")]
-position = Vector2(10, 97)
-rotation = -3.14159
-
-[node name="Reverse Pad2" parent="." instance=ExtResource("3_r83ig")]
-position = Vector2(10, 153)
-rotation = -3.14159
-
-[node name="Checkpoint" parent="." instance=ExtResource("5_go6ma")]
-position = Vector2(238, 75)
-
-[node name="TerrainPolygon2D" parent="." instance=ExtResource("6_arnv0")]
-texture_repeat = 2
-position = Vector2(56, 122)
-polygon = PackedVector2Array(-56, -17, 93, -17, 93, -13, -56, -13)
-
-[node name="TerrainPolygon2D2" parent="." instance=ExtResource("6_arnv0")]
-texture_repeat = 2
-position = Vector2(56, 178)
-polygon = PackedVector2Array(-56, -17, 270, -17, 270, 2, -56, 2)
+[node name="Camera2D" type="Camera2D" parent="Player"]
+offset = Vector2(0, -40)
+process_callback = 0
 
 [connection signal="reached_checkpoint" from="Player" to="." method="_on_player_reached_checkpoint"]
 [connection signal="reset_to_last_checkpoint" from="Player" to="." method="_on_player_reset_to_last_checkpoint"]

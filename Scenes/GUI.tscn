@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpxqlwi423cxe"]
+[gd_scene load_steps=5 format=3 uid="uid://cpxqlwi423cxe"]
 
 [ext_resource type="Script" path="res://Scenes/GUI.gd" id="1_b1gpi"]
+[ext_resource type="Theme" uid="uid://cbkk2yn7dbh5n" path="res://Scenes/Menus/Theme.tres" id="1_la6ia"]
+[ext_resource type="FontFile" uid="uid://ciuu7b2wvtap2" path="res://Font/ConsKindaBubblyBold.ttf" id="2_seco1"]
+[ext_resource type="PackedScene" uid="uid://fbywgpksk4j0" path="res://Scenes/Wobbler.tscn" id="3_k44ps"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -9,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_la6ia")
 script = ExtResource("1_b1gpi")
 
 [node name="Envelope HBox" type="HBoxContainer" parent="."]
@@ -18,3 +22,46 @@ offset_top = 7.0
 offset_right = 149.0
 offset_bottom = 24.0
 theme_override_constants/separation = -18
+
+[node name="Hit Text" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 58.0
+offset_top = 11.0
+offset_right = 270.0
+offset_bottom = 43.0
+pivot_offset = Vector2(106, 16)
+theme_override_colors/font_color = Color(0.933333, 0.721569, 0.705882, 1)
+theme_override_colors/font_outline_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
+theme_override_fonts/font = ExtResource("2_seco1")
+text = "hit text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hit Text2" type="Label" parent="Hit Text"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 213.0
+offset_bottom = 33.0
+pivot_offset = Vector2(106, 16)
+theme_override_colors/font_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
+theme_override_fonts/font = ExtResource("2_seco1")
+text = "hit text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Wobbler" parent="Hit Text" instance=ExtResource("3_k44ps")]
+max_angle = 0.4
+max_translation = Vector2(12, 8)
+max_scale = Vector2(0.3, 0.3)
+decay = 0.2
+
+[node name="Score Text" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 27.0
+offset_right = 161.0
+offset_bottom = 50.0
+text = "Score:"

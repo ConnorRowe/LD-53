@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://cbkk2yn7dbh5n"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://cbkk2yn7dbh5n"]
 
 [ext_resource type="Texture2D" uid="uid://bprq7vntxbkor" path="res://Textures/grabber_normal.png" id="1_4gm7q"]
 [ext_resource type="FontFile" uid="uid://bpnnen7rrkg33" path="res://Font/ConsFont_v2.ttf" id="1_htj0f"]
@@ -8,6 +8,11 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cuus1"]
 bg_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.576471, 0.780392, 0.890196, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmmq3"]
 bg_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
@@ -44,6 +49,18 @@ bg_color = Color(0.337255, 0.447059, 0.882353, 1)
 expand_margin_top = 1.0
 expand_margin_bottom = 1.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8jlp"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.847059, 0.329412, 0.321569, 1)
+
 [resource]
 default_font = ExtResource("1_htj0f")
 Button/colors/font_color = Color(0.933333, 0.721569, 0.705882, 1)
@@ -65,4 +82,6 @@ HSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_i6r7o")
 HSlider/styles/slider = SubResource("StyleBoxFlat_qpkgs")
 Label/colors/font_color = Color(0.576471, 0.780392, 0.890196, 1)
 Label/constants/line_spacing = 0
+Panel/styles/panel = SubResource("StyleBoxFlat_x8jlp")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_x8jlp")
 RichTextLabel/colors/default_color = Color(0.576471, 0.780392, 0.890196, 1)

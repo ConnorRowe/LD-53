@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlcrgyxcjk204"]
+
+[ext_resource type="Script" path="res://Scenes/Spike Trap.gd" id="1_slhr6"]
+[ext_resource type="Texture2D" uid="uid://bfoqxb3rq4x6m" path="res://Textures/spike.png" id="2_3dics"]
+
+[sub_resource type="Animation" id="Animation_w2pik"]
+resource_name = "spike"
+length = 2.142
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.428, 0.75, 1.178),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShapeCast2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.75, 1.178),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_kkeqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShapeCast2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ak36"]
+_data = {
+"RESET": SubResource("Animation_kkeqy"),
+"spike": SubResource("Animation_w2pik")
+}
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_b5ujt"]
+points = PackedVector2Array(-8, 0, -8, -6, -6, -6, -2, -31, 2, -31, 6, -6, 8, -6, 8, 0)
+
+[node name="Spike Trap" type="Node2D"]
+script = ExtResource("1_slhr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("2_3dics")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "spike"
+libraries = {
+"": SubResource("AnimationLibrary_4ak36")
+}
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_b5ujt")
+target_position = Vector2(0, 0)
+max_results = 1
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false

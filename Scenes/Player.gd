@@ -15,15 +15,35 @@ var has_jumped: bool = false
 @onready var rail_area_2d = $"Rail Area2D"
 @onready var jiji = $Jiji
 @onready var dust_particles = $"Dust Particles"
+@onready var grind_bus_timer = $"Grind Bus Timer"
+@onready var grind_player = $"Grind Player"
+@onready var grind_ollie_player = $"Grind Ollie Player"
+@onready var drop_jump_timer = $"Drop Jump Timer"
 
 var is_on_rail: bool = false
 var current_rail: Rail
 var rail_percent: float = 0.0
+var near_postbox: bool = false
+var last_postbox: Postbox = null
+var grind_phaser: AudioEffectPhaser = AudioServer.get_bus_effect(AudioServer.get_bus_index("Grind"), 0)
+var can_drop_jump:bool = false
 
 var direction: int = 1 : set = set_direction
 
+func _ready():
+	grind_player.play()
+	grind_player.stream_paused = true
+
+func _input(event):
+	if near_postbox and not is_on_rail and not is_on_floor() and event.is_action_pressed("jump"):
+		last_postbox.fill()
+		near_postbox = false
+
+func _process(_delta):
+	if near_postbox:
+		last_postbox.update_distance(global_position)
+
 func _physics_process(delta):
-	
 	if is_on_rail:
 		var rail_movement = (SPEED * delta * 0.05) / current_rail.get_point_count()
 		if direction < 0:
@@ -36,6 +56,7 @@ func _physics_process(delta):
 		elif Input.is_action_just_pressed("jump"):
 			detach_from_rail()
 			jump()
+			grind_ollie_player.play()
 		else:
 			var p = (current_rail.get_point_count() - 1) * rail_percent
 			var floored = floori(p)
@@ -60,7 +81,7 @@ func _physics_process(delta):
 		has_jumped = false
 
 	# Handle Jump
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or can_drop_jump):
 		jump()
 
 	# Horizontal movement
@@ -82,6 +103,7 @@ func _physics_process(delta):
 func jump():
 	velocity.y = JUMP_VELOCITY
 	has_jumped = true
+	can_drop_jump = false
 
 func attach_to_rail(rail: Rail):
 	if rail.is_rail_below_position(global_position):
@@ -92,7 +114,9 @@ func attach_to_rail(rail: Rail):
 		print("rail_percent:", rail_percent)
 		skamtebord.frame = 1
 		wobbler.wobble(1)
-		dust_particles.emitting = true
+		dust_particles.emitting = true 
+		grind_player.stream_paused = false
+		grind_ollie_player.play()
 
 func detach_from_rail():
 	is_on_rail = false
@@ -100,7 +124,9 @@ func detach_from_rail():
 	rotation = 0.0
 	velocity.y = 0
 	dust_particles.emitting = false
-	
+	grind_player.stream_paused = true
+	can_drop_jump = true
+	drop_jump_timer.start()
 
 # Reverse direction
 func _on_board_area_2d_area_entered(area):
@@ -112,6 +138,7 @@ func _on_board_area_2d_area_entered(area):
 			direction = 1
 
 		parent.wobble()
+		Sounds.reverse()
 
 
 func _on_rail_area_2d_body_entered(body):
@@ -120,6 +147,7 @@ func _on_rail_area_2d_body_entered(body):
 		attach_to_rail(rail)
 
 func reset():
+	detach_from_rail()
 	reset_to_last_checkpoint.emit()
 
 
@@ -128,8 +156,26 @@ func _on_pickup_area_2d_area_entered(area):
 	if parent is Checkpoint:
 		reached_checkpoint.emit(parent)
 		parent.activate()
-	
+	elif parent is Postbox and parent.is_empty:
+		near_postbox = true
+		last_postbox = parent
+
+
+func _on_pickup_area_2d_area_exited(area):
+	var parent = area.get_parent()
+	if parent is Postbox:
+		near_postbox = false
+
+
 func set_direction(value):
 	direction = value
 	jiji.flip_h = direction < 0
 	dust_particles.scale.x = direction
+
+func _on_grind_bus_timer_timeout():
+	grind_bus_timer.wait_time = randf_range(1, 5)
+	grind_phaser.rate_hz = randf_range(0.08, 0.2)
+
+
+func _on_drop_jump_timer_timeout():
+	can_drop_jump = false

@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="LD-53"
-run/main_scene="res://Scenes/Level.tscn"
+run/main_scene="res://Scenes/Levels/Level1.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Sounds="*res://Scenes/Sounds.tscn"
+Transition="*res://Scenes/Transition.tscn"
+GameData="*res://Scenes/GameData.gd"
 
 [display]
 
@@ -40,6 +42,7 @@ jump={
 2d_physics/layer_1="General"
 2d_physics/layer_2="Rails"
 2d_physics/layer_3="Pickups"
+2d_physics/layer_4="Player Only"
 
 [physics]
 
