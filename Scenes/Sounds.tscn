@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://df8ilwhn4g3v6"]
+[gd_scene load_steps=12 format=3 uid="uid://df8ilwhn4g3v6"]
 
 [ext_resource type="Script" path="res://Scenes/Sounds.gd" id="1_qq76e"]
 [ext_resource type="AudioStream" uid="uid://58hsu1rrs0bc" path="res://Sounds/Pop.wav" id="2_cqo33"]
 [ext_resource type="AudioStream" uid="uid://cypom83tavyvt" path="res://Sounds/Reverse.wav" id="3_quf8h"]
-[ext_resource type="AudioStream" uid="uid://w5eqx23n2k1h" path="res://Sounds/main_theme.ogg" id="3_suoa4"]
+[ext_resource type="AudioStream" uid="uid://dqvx2ljl7bod5" path="res://Sounds/menu_theme.ogg" id="4_1sxv3"]
+[ext_resource type="AudioStream" uid="uid://clq46nmqw2jfo" path="res://Sounds/Checkpoint.wav" id="5_nnh43"]
+[ext_resource type="AudioStream" uid="uid://dpucobmrfk4r" path="res://Sounds/Score_1.wav" id="6_7c118"]
+[ext_resource type="AudioStream" uid="uid://wk6201dfn7ue" path="res://Sounds/Score_2.wav" id="7_qldwc"]
+[ext_resource type="AudioStream" uid="uid://c7fmlcpf6yrm6" path="res://Sounds/Score_3.wav" id="8_r2p20"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2r0ka"]
 streams_count = 1
@@ -19,7 +23,19 @@ random_volume_offset_db = 1.1
 stream_0/stream = ExtResource("3_quf8h")
 stream_0/weight = 1.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_30ptf"]
+streams_count = 3
+random_pitch = 1.0
+random_volume_offset_db = 1.0
+stream_0/stream = ExtResource("6_7c118")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("7_qldwc")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("8_r2p20")
+stream_2/weight = 1.0
+
 [node name="Sounds" type="Node"]
+process_mode = 3
 script = ExtResource("1_qq76e")
 
 [node name="Pop Player" type="AudioStreamPlayer" parent="."]
@@ -32,6 +48,18 @@ volume_db = -8.5
 bus = &"SFX"
 
 [node name="Music Player" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_suoa4")
+process_mode = 3
+stream = ExtResource("4_1sxv3")
 autoplay = true
 bus = &"Music"
+
+[node name="Delivery Player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_nnh43")
+volume_db = 2.836
+bus = &"SFX"
+
+[node name="Score Player" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_30ptf")
+volume_db = 5.0
+max_polyphony = 3
+bus = &"SFX"

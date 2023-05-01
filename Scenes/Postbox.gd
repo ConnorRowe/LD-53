@@ -22,6 +22,7 @@ func fill():
 	get_node("Confetti%s" % (accuracy + 1)).emitting = true
 	made_delivery.emit(accuracy)
 	wobbler.wobble(float(accuracy) / 2)
+	Sounds.delivery()
 
 func update_distance(player_global_pos: Vector2):
 	var scaled_distance = clampf(to_local(player_global_pos).length() / 39.0, 0, 1)

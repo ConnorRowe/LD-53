@@ -31,6 +31,8 @@ position = Vector2(17, 89)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -40)
 process_callback = 0
+position_smoothing_enabled = true
 
+[connection signal="picked_up_score" from="Player" to="." method="_on_player_picked_up_score"]
 [connection signal="reached_checkpoint" from="Player" to="." method="_on_player_reached_checkpoint"]
 [connection signal="reset_to_last_checkpoint" from="Player" to="." method="_on_player_reset_to_last_checkpoint"]

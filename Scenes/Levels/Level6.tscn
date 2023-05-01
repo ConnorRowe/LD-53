@@ -1,0 +1,226 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckhlwp4afwdwr"]
+
+[ext_resource type="PackedScene" uid="uid://dwiopopxqdt1r" path="res://Scenes/Level.tscn" id="1_80brg"]
+[ext_resource type="PackedScene" uid="uid://bj6dokmjafvc0" path="res://Scenes/Rail.tscn" id="2_lhh4n"]
+[ext_resource type="PackedScene" uid="uid://ic6m16p33gd0" path="res://Scenes/Postbox.tscn" id="2_moha2"]
+[ext_resource type="PackedScene" uid="uid://bt3tagxo7m5st" path="res://Scenes/Reverse Pad.tscn" id="3_xxe48"]
+[ext_resource type="PackedScene" uid="uid://bo53b30k73ytc" path="res://Scenes/Score Pickup.tscn" id="4_1xnho"]
+[ext_resource type="PackedScene" uid="uid://dlcrgyxcjk204" path="res://Scenes/Spike Trap.tscn" id="6_fgeeq"]
+
+[node name="Level" instance=ExtResource("1_80brg")]
+num_postboxes = 4
+envelope_types = PackedInt32Array(1, 0, 0, 2)
+
+[node name="Postbox" parent="Post Boxes" index="0" instance=ExtResource("2_moha2")]
+position = Vector2(368, 208)
+
+[node name="Postbox2" parent="Post Boxes" index="1" instance=ExtResource("2_moha2")]
+position = Vector2(56, 32)
+
+[node name="Postbox3" parent="Post Boxes" index="2" instance=ExtResource("2_moha2")]
+position = Vector2(104, -168)
+
+[node name="Postbox4" parent="Post Boxes" index="3" instance=ExtResource("2_moha2")]
+position = Vector2(392, 0)
+
+[node name="Player" parent="." index="3"]
+position = Vector2(34, 131)
+
+[node name="Camera2D" parent="Player" index="12"]
+offset = Vector2(0, -10)
+
+[node name="Rail" parent="." index="4" instance=ExtResource("2_lhh4n")]
+position = Vector2(24, 160)
+points = PackedVector2Array(0, 1.52588e-05, 32, 1.52588e-05, 64, 1.52588e-05)
+
+[node name="Rail11" parent="." index="5" instance=ExtResource("2_lhh4n")]
+position = Vector2(384, 88)
+points = PackedVector2Array(0, 1.52588e-05, 32, 1.52588e-05, 64, 1.52588e-05)
+
+[node name="Rail5" parent="." index="6" instance=ExtResource("2_lhh4n")]
+position = Vector2(568, 128)
+points = PackedVector2Array(0, 1.52588e-05, 32, 1.52588e-05, 64, 1.52588e-05)
+
+[node name="Rail4" parent="." index="7" instance=ExtResource("2_lhh4n")]
+position = Vector2(288, 128)
+points = PackedVector2Array(0, -1.52588e-05, 48, -1.52588e-05, 96, -1.52588e-05, 144, -1.52588e-05, 192, -1.52588e-05, 232, -1.52588e-05)
+
+[node name="Rail12" parent="." index="8" instance=ExtResource("2_lhh4n")]
+position = Vector2(288, 40)
+points = PackedVector2Array(0, -1.52588e-05, 48, -1.52588e-05, 96, -1.52588e-05, 144, -1.52588e-05, 192, -1.52588e-05, 232, -1.52588e-05)
+
+[node name="Rail24" parent="." index="9" instance=ExtResource("2_lhh4n")]
+position = Vector2(152, -136)
+points = PackedVector2Array(-64, 0, -31.8541, -1.52588e-05, 0.218201, -1.52588e-05, 48, -1.52588e-05, 96, -1.52588e-05, 144, -1.52588e-05, 192, -1.52588e-05, 232, -1.52588e-05)
+
+[node name="Rail2" parent="." index="10" instance=ExtResource("2_lhh4n")]
+position = Vector2(128.858, 160.389)
+points = PackedVector2Array(-0.857666, -0.38945, 31.1423, -0.38945)
+
+[node name="Rail13" parent="." index="11" instance=ExtResource("2_lhh4n")]
+position = Vector2(232, 8)
+points = PackedVector2Array(-0.857666, -0.38945, 31.1423, -0.38945)
+
+[node name="Rail22" parent="." index="12" instance=ExtResource("2_lhh4n")]
+position = Vector2(448, -88)
+points = PackedVector2Array(-0.857666, -0.38945, 31.1423, -0.38945)
+
+[node name="Rail23" parent="." index="13" instance=ExtResource("2_lhh4n")]
+position = Vector2(400, -128)
+points = PackedVector2Array(-0.857666, -0.38945, 31.1423, -0.38945)
+
+[node name="Rail17" parent="." index="14" instance=ExtResource("2_lhh4n")]
+position = Vector2(536, 24)
+points = PackedVector2Array(-0.857666, -0.38945, 24, -24)
+
+[node name="Rail21" parent="." index="15" instance=ExtResource("2_lhh4n")]
+position = Vector2(504, 16)
+points = PackedVector2Array(-16, -80, -8, -56, 8, -48, 24, -48)
+
+[node name="Rail18" parent="." index="16" instance=ExtResource("2_lhh4n")]
+position = Vector2(602.858, 24)
+points = PackedVector2Array(-0.857666, -0.38945, 24, -24)
+
+[node name="Rail19" parent="." index="17" instance=ExtResource("2_lhh4n")]
+position = Vector2(666.858, 24)
+points = PackedVector2Array(-0.857666, -0.38945, 24, -24)
+
+[node name="Rail14" parent="." index="18" instance=ExtResource("2_lhh4n")]
+position = Vector2(168, -16)
+points = PackedVector2Array(-0.857666, -0.38945, 31.1423, -0.38945)
+
+[node name="Rail15" parent="." index="19" instance=ExtResource("2_lhh4n")]
+position = Vector2(104, 8)
+points = PackedVector2Array(-0.857666, -0.38945, 31.1423, -0.38945)
+
+[node name="Rail8" parent="." index="20" instance=ExtResource("2_lhh4n")]
+position = Vector2(536, 224)
+points = PackedVector2Array(-0.857666, -0.38945, 31.1423, -0.38945)
+
+[node name="Rail9" parent="." index="21" instance=ExtResource("2_lhh4n")]
+position = Vector2(472, 224)
+points = PackedVector2Array(-0.857666, -0.38945, 31.1423, -0.38945)
+
+[node name="Rail10" parent="." index="22" instance=ExtResource("2_lhh4n")]
+position = Vector2(408, 224)
+points = PackedVector2Array(-0.857666, -0.38945, 31.1423, -0.38945)
+
+[node name="Rail7" parent="." index="23" instance=ExtResource("2_lhh4n")]
+position = Vector2(688, 128)
+points = PackedVector2Array(-0.857666, -0.38945, 31.1423, -0.38945)
+height = 18.0
+
+[node name="Rail20" parent="." index="24" instance=ExtResource("2_lhh4n")]
+position = Vector2(714.858, 24)
+points = PackedVector2Array(-2.85767, 0, 37.1423, 0, 69.1423, 0)
+
+[node name="Reverse Pad2" parent="Rail20" index="1" instance=ExtResource("3_xxe48")]
+position = Vector2(61.1423, -8)
+
+[node name="Rail3" parent="." index="25" instance=ExtResource("2_lhh4n")]
+position = Vector2(199.835, 160.26)
+points = PackedVector2Array(0.164978, -0.260223, 32.165, -16.2602, 64.165, -32.2602)
+
+[node name="Rail16" parent="." index="26" instance=ExtResource("2_lhh4n")]
+position = Vector2(320, 288)
+points = PackedVector2Array(0.164978, -0.260223, 32.165, -16.2602, 64.165, -32.2602)
+
+[node name="Rail6" parent="." index="27" instance=ExtResource("2_lhh4n")]
+position = Vector2(600, 193)
+points = PackedVector2Array(0, 0, 32, -16, 64, -32, 96, -32)
+
+[node name="Reverse Pad" parent="Rail6" index="1" instance=ExtResource("3_xxe48")]
+position = Vector2(96, -40)
+
+[node name="Reverse Pad2" parent="Rail6" index="2" instance=ExtResource("3_xxe48")]
+position = Vector2(122, -73)
+
+[node name="Reverse Pad3" parent="Rail6" index="3" instance=ExtResource("3_xxe48")]
+position = Vector2(-280, 87)
+rotation = 3.14159
+
+[node name="Reverse Pad4" parent="Rail6" index="4" instance=ExtResource("3_xxe48")]
+position = Vector2(-576, -41)
+rotation = 3.14159
+
+[node name="Score Pickup" parent="." index="28" instance=ExtResource("4_1xnho")]
+position = Vector2(708.982, 117.411)
+
+[node name="Score Pickup2" parent="." index="29" instance=ExtResource("4_1xnho")]
+position = Vector2(672, 152)
+
+[node name="Score Pickup3" parent="." index="30" instance=ExtResource("4_1xnho")]
+position = Vector2(552, 208)
+
+[node name="Score Pickup4" parent="." index="31" instance=ExtResource("4_1xnho")]
+position = Vector2(488, 208)
+
+[node name="Score Pickup5" parent="." index="32" instance=ExtResource("4_1xnho")]
+position = Vector2(424, 208)
+
+[node name="Score Pickup6" parent="." index="33" instance=ExtResource("4_1xnho")]
+position = Vector2(400, 120)
+
+[node name="Score Pickup7" parent="." index="34" instance=ExtResource("4_1xnho")]
+position = Vector2(408, 120)
+
+[node name="Score Pickup8" parent="." index="35" instance=ExtResource("4_1xnho")]
+position = Vector2(416, 120)
+
+[node name="Score Pickup9" parent="." index="36" instance=ExtResource("4_1xnho")]
+position = Vector2(424, 120)
+
+[node name="Score Pickup10" parent="." index="37" instance=ExtResource("4_1xnho")]
+position = Vector2(432, 120)
+
+[node name="Score Pickup11" parent="." index="38" instance=ExtResource("4_1xnho")]
+position = Vector2(248, 0)
+
+[node name="Score Pickup12" parent="." index="39" instance=ExtResource("4_1xnho")]
+position = Vector2(184, -24)
+
+[node name="Score Pickup13" parent="." index="40" instance=ExtResource("4_1xnho")]
+position = Vector2(192, -168)
+
+[node name="Score Pickup14" parent="." index="41" instance=ExtResource("4_1xnho")]
+position = Vector2(256, -168)
+
+[node name="Score Pickup15" parent="." index="42" instance=ExtResource("4_1xnho")]
+position = Vector2(320, -168)
+
+[node name="Score Pickup16" parent="." index="43" instance=ExtResource("4_1xnho")]
+position = Vector2(496, -64)
+
+[node name="Score Pickup17" parent="." index="44" instance=ExtResource("4_1xnho")]
+position = Vector2(504, -48)
+
+[node name="Score Pickup18" parent="." index="45" instance=ExtResource("4_1xnho")]
+position = Vector2(520, -40)
+
+[node name="Score Pickup19" parent="." index="46" instance=ExtResource("4_1xnho")]
+position = Vector2(616, 0)
+
+[node name="Score Pickup20" parent="." index="47" instance=ExtResource("4_1xnho")]
+position = Vector2(680, 0)
+
+[node name="Score Pickup21" parent="." index="48" instance=ExtResource("4_1xnho")]
+position = Vector2(736, 16)
+
+[node name="Spike Trap" parent="." index="49" instance=ExtResource("6_fgeeq")]
+position = Vector2(120, 13)
+
+[node name="Spike Trap2" parent="." index="50" instance=ExtResource("6_fgeeq")]
+position = Vector2(320, -136)
+
+[node name="Spike Trap3" parent="." index="51" instance=ExtResource("6_fgeeq")]
+position = Vector2(256, -136)
+
+[node name="Spike Trap4" parent="." index="52" instance=ExtResource("6_fgeeq")]
+position = Vector2(192, -136)
+
+[node name="Reverse Pad" parent="." index="53" instance=ExtResource("3_xxe48")]
+position = Vector2(375, -147)
+
+[node name="Reverse Pad2" parent="." index="54" instance=ExtResource("3_xxe48")]
+position = Vector2(144, -145)
+rotation = 3.14159

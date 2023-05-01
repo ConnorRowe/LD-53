@@ -2,9 +2,10 @@ class_name Player extends CharacterBody2D
 
 signal reset_to_last_checkpoint
 signal reached_checkpoint(checkpoint)
+signal picked_up_score
 
 const SPEED: float = 50.0
-const JUMP_VELOCITY: float = -250.0
+const JUMP_VELOCITY: float = -280.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -19,6 +20,9 @@ var has_jumped: bool = false
 @onready var grind_player = $"Grind Player"
 @onready var grind_ollie_player = $"Grind Ollie Player"
 @onready var drop_jump_timer = $"Drop Jump Timer"
+@onready var tail = $Tail
+
+@export var frozen: bool = false
 
 var is_on_rail: bool = false
 var current_rail: Rail
@@ -32,9 +36,13 @@ var direction: int = 1 : set = set_direction
 
 func _ready():
 	grind_player.play()
-	grind_player.stream_paused = true
+	grind_player.set_deferred("stream_paused", true)
+
 
 func _input(event):
+	if frozen:
+		return
+	
 	if near_postbox and not is_on_rail and not is_on_floor() and event.is_action_pressed("jump"):
 		last_postbox.fill()
 		near_postbox = false
@@ -42,8 +50,14 @@ func _input(event):
 func _process(_delta):
 	if near_postbox:
 		last_postbox.update_distance(global_position)
+	
+	if not is_on_rail and not grind_player.stream_paused:
+		grind_player.set_deferred("stream_paused", true)
 
 func _physics_process(delta):
+	if frozen:
+		return
+	
 	if is_on_rail:
 		var rail_movement = (SPEED * delta * 0.05) / current_rail.get_point_count()
 		if direction < 0:
@@ -106,6 +120,9 @@ func jump():
 	can_drop_jump = false
 
 func attach_to_rail(rail: Rail):
+	if frozen:
+		return
+		
 	if rail.is_rail_below_position(global_position):
 		print("attached to rail")
 		current_rail = rail
@@ -130,6 +147,9 @@ func detach_from_rail():
 
 # Reverse direction
 func _on_board_area_2d_area_entered(area):
+	if frozen:
+		return
+	
 	var parent = area.get_parent()
 	if parent is ReversePad:
 		if parent.rotation == 0.0:
@@ -142,6 +162,9 @@ func _on_board_area_2d_area_entered(area):
 
 
 func _on_rail_area_2d_body_entered(body):
+	if frozen:
+		return
+		
 	var rail = body.get_parent()
 	if rail is Rail:
 		attach_to_rail(rail)
@@ -152,6 +175,9 @@ func reset():
 
 
 func _on_pickup_area_2d_area_entered(area):
+	if frozen:
+		return
+		
 	var parent = area.get_parent()
 	if parent is Checkpoint:
 		reached_checkpoint.emit(parent)
@@ -159,6 +185,9 @@ func _on_pickup_area_2d_area_entered(area):
 	elif parent is Postbox and parent.is_empty:
 		near_postbox = true
 		last_postbox = parent
+	elif parent.has_meta("score"):
+		parent.queue_free()
+		picked_up_score.emit()
 
 
 func _on_pickup_area_2d_area_exited(area):

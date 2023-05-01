@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpxqlwi423cxe"]
+[gd_scene load_steps=7 format=3 uid="uid://cpxqlwi423cxe"]
 
 [ext_resource type="Script" path="res://Scenes/GUI.gd" id="1_b1gpi"]
 [ext_resource type="Theme" uid="uid://cbkk2yn7dbh5n" path="res://Scenes/Menus/Theme.tres" id="1_la6ia"]
 [ext_resource type="FontFile" uid="uid://ciuu7b2wvtap2" path="res://Font/ConsKindaBubblyBold.ttf" id="2_seco1"]
 [ext_resource type="PackedScene" uid="uid://fbywgpksk4j0" path="res://Scenes/Wobbler.tscn" id="3_k44ps"]
+[ext_resource type="PackedScene" uid="uid://7aq1v44q7bwm" path="res://Scenes/Menus/Settings.tscn" id="5_rhvs4"]
+[ext_resource type="PackedScene" uid="uid://bqppsekdj4sp1" path="res://Scenes/Button.tscn" id="6_n7ohl"]
 
 [node name="GUI" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,3 +68,54 @@ offset_top = 27.0
 offset_right = 161.0
 offset_bottom = 50.0
 text = "Score:"
+
+[node name="Pause Screen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pause PanelContainer" type="PanelContainer" parent="Pause Screen"]
+self_modulate = Color(1, 1, 1, 0.901961)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Pause Screen/Pause PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 59
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 59
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause Screen/Pause PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Settings" parent="Pause Screen/Pause PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_rhvs4")]
+layout_mode = 2
+
+[node name="Return" parent="Pause Screen" instance=ExtResource("6_n7ohl")]
+layout_mode = 2
+offset_left = 60.0
+offset_top = 147.0
+offset_right = 218.0
+offset_bottom = 165.0
+size_flags_stretch_ratio = 4.27
+text = "Return"
+
+[node name="Quit" parent="Pause Screen" instance=ExtResource("6_n7ohl")]
+layout_mode = 2
+offset_left = 222.0
+offset_top = 147.0
+offset_right = 260.0
+offset_bottom = 165.0
+text = "Quit"
+
+[connection signal="pressed" from="Pause Screen/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Pause Screen/Quit" to="." method="_on_quit_pressed"]

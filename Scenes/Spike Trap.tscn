@@ -1,36 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlcrgyxcjk204"]
+[gd_scene load_steps=9 format=3 uid="uid://dlcrgyxcjk204"]
 
 [ext_resource type="Script" path="res://Scenes/Spike Trap.gd" id="1_slhr6"]
 [ext_resource type="Texture2D" uid="uid://bfoqxb3rq4x6m" path="res://Textures/spike.png" id="2_3dics"]
-
-[sub_resource type="Animation" id="Animation_w2pik"]
-resource_name = "spike"
-length = 2.142
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.428, 0.75, 1.178),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [1, 2, 0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ShapeCast2D:enabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.75, 1.178),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
+[ext_resource type="AudioStream" uid="uid://dmj6egb7nfjo1" path="res://Sounds/Spike_1.wav" id="3_fbe2m"]
+[ext_resource type="AudioStream" uid="uid://dluhlmoy5bgj1" path="res://Sounds/Spike_2.wav" id="4_hjha8"]
 
 [sub_resource type="Animation" id="Animation_kkeqy"]
 length = 0.001
@@ -58,6 +31,71 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RealspikePlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_w2pik"]
+resource_name = "spike"
+length = 2.142
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.428, 1.178, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShapeCast2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.178, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PrespikePlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.428),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RealspikePlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.178),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4ak36"]
 _data = {
@@ -66,7 +104,7 @@ _data = {
 }
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_b5ujt"]
-points = PackedVector2Array(-8, 0, -8, -6, -6, -6, -2, -31, 2, -31, 6, -6, 8, -6, 8, 0)
+points = PackedVector2Array(-1, -30, -1, -31, -5, -6, 5, -6, 1, -30)
 
 [node name="Spike Trap" type="Node2D"]
 script = ExtResource("1_slhr6")
@@ -89,3 +127,13 @@ max_results = 1
 collision_mask = 8
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="PrespikePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_fbe2m")
+max_distance = 200.0
+bus = &"SFX"
+
+[node name="RealspikePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_hjha8")
+max_distance = 200.0
+bus = &"SFX"

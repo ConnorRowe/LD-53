@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo53b30k73ytc"]
+
+[ext_resource type="Texture2D" uid="uid://denfusavp5gmi" path="res://Textures/score pickup.png" id="1_q5vkq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d2pi6"]
+radius = 6.0
+
+[node name="Score Pickup" type="Node2D"]
+metadata/score = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_d2pi6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_q5vkq")

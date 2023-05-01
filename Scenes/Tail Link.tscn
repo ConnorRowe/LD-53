@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dvdub71fivfvn"]
+
+[node name="Tail Link" type="PinJoint2D"]
+bias = 0.663
+softness = 1.39

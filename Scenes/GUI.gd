@@ -9,9 +9,12 @@ const hit_texts: PackedStringArray = ["only just...", "not bad", "PERFECT DELIVE
 var hit_colours: PackedColorArray = [Color("#5672e1"), Color("#93c7e3"), Color("#eeb8b4")]
 @onready var hittext_wobbler = $"Hit Text/Wobbler"
 @onready var score_text = $"Score Text"
+@onready var pause_screen = $"Pause Screen"
 
-func _ready():
-	pass
+
+func _input(event):
+	if event.is_action_released("pause"):
+		toggle_pause()
 
 func add_envelopes(array: PackedInt32Array):
 	for i in array:
@@ -45,3 +48,17 @@ func deliver_last_envelope(postbox_gpos: Vector2, player_gpos: Vector2):
 
 func update_score(score: int):
 	score_text.text = "Score: %s" % score
+
+func toggle_pause():
+	pause_screen.visible = !pause_screen.visible	
+	get_tree().paused = pause_screen.visible
+
+
+func _on_return_pressed():
+	toggle_pause()
+
+
+func _on_quit_pressed():
+	get_tree().paused = false
+	Transition.transition_to_scene("res://Scenes/Menus/Level Selection.tscn")
+	Sounds.fade_music(Sounds.menu_theme)

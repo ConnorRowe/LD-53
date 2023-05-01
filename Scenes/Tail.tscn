@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ylhbmptp2cu8"]
+
+[ext_resource type="Script" path="res://Scenes/Tail.gd" id="1_nbxkh"]
+
+[node name="Tail" type="Node2D"]
+z_index = -1
+script = ExtResource("1_nbxkh")
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 2.0
+default_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 1

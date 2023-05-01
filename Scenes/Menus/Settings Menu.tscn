@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://0438lcnfbsif"]
+
+[ext_resource type="Theme" uid="uid://cbkk2yn7dbh5n" path="res://Scenes/Menus/Theme.tres" id="1_c1igw"]
+[ext_resource type="PackedScene" uid="uid://7aq1v44q7bwm" path="res://Scenes/Menus/Settings.tscn" id="2_2qwju"]
+[ext_resource type="Script" path="res://Scenes/Menus/Settings Menu.gd" id="2_vdsup"]
+[ext_resource type="PackedScene" uid="uid://bqppsekdj4sp1" path="res://Scenes/Button.tscn" id="3_gfvt1"]
+
+[node name="Settings Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_c1igw")
+script = ExtResource("2_vdsup")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0588235, 0.0509804, 0.0666667, 1)
+
+[node name="Settings" parent="." instance=ExtResource("2_2qwju")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -83.0
+offset_right = 82.0
+offset_bottom = 51.0
+
+[node name="Back" parent="." instance=ExtResource("3_gfvt1")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -34.0
+offset_right = 37.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

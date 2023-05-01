@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dc0kdaxccejb4"]
+[gd_scene load_steps=19 format=3 uid="uid://dc0kdaxccejb4"]
 
 [ext_resource type="Theme" uid="uid://cbkk2yn7dbh5n" path="res://Scenes/Menus/Theme.tres" id="1_02h8x"]
 [ext_resource type="Script" path="res://Scenes/Menus/Level Complete.gd" id="2_i2jpv"]
@@ -6,8 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://cgdo6v2oy1b2" path="res://Textures/postmaster.png" id="3_iaxbg"]
 [ext_resource type="Texture2D" uid="uid://y30fj3ar6co7" path="res://Textures/confetti.png" id="4_6lvlt"]
 [ext_resource type="PackedScene" uid="uid://bqppsekdj4sp1" path="res://Scenes/Button.tscn" id="5_jgjqj"]
+[ext_resource type="Shader" path="res://Shaders/3 Colour Shift.gdshader" id="6_nyyat"]
 [ext_resource type="AudioStream" uid="uid://balponlnxyt1h" path="res://Sounds/Nev purr.ogg" id="7_r5hjw"]
 [ext_resource type="Texture2D" uid="uid://bgwynpfkp56s7" path="res://Textures/skamtebord.png" id="8_3xb2h"]
+[ext_resource type="Shader" path="res://Shaders/Checkpoint.gdshader" id="8_f7yp8"]
+[ext_resource type="Texture2D" uid="uid://wlxv5acfpr6h" path="res://Textures/postbox_bg_effect.png" id="9_313ib"]
 [ext_resource type="Texture2D" uid="uid://deoe2woaah1jn" path="res://Textures/jeej.png" id="9_gdp1p"]
 [ext_resource type="PackedScene" uid="uid://fbywgpksk4j0" path="res://Scenes/Wobbler.tscn" id="10_bvxq8"]
 
@@ -17,7 +20,26 @@ particles_anim_h_frames = 7
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[node name="Level Compelte" type="Control"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hs3gn"]
+shader = ExtResource("6_nyyat")
+shader_parameter/colour_a = Color(0.933333, 0.721569, 0.705882, 1)
+shader_parameter/colour_b = Color(0.576471, 0.780392, 0.890196, 1)
+shader_parameter/colour_c = Color(0.847059, 0.329412, 0.321569, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m5o3q"]
+shader = ExtResource("8_f7yp8")
+shader_parameter/colour = Color(0.337255, 0.447059, 0.882353, 1)
+shader_parameter/threshhold = 0.24
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wb1w"]
+shader = ExtResource("8_f7yp8")
+shader_parameter/colour = Color(0.576471, 0.780392, 0.890196, 1)
+shader_parameter/threshhold = 0.04
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_te5qj"]
+radius = 3.0
+
+[node name="Level Complete" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 theme = ExtResource("1_02h8x")
@@ -84,11 +106,13 @@ theme_override_fonts/font = ExtResource("3_4muhl")
 text = "Job Done!"
 
 [node name="Label" type="Label" parent="Label2"]
+material = SubResource("ShaderMaterial_hs3gn")
 layout_mode = 0
 offset_left = -1.0
 offset_top = -1.0
 offset_right = 75.0
 offset_bottom = 15.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_4muhl")
 text = "Job Done!"
 
@@ -121,18 +145,33 @@ volume_db = 6.618
 autoplay = true
 bus = &"SFX"
 
-[node name="Fake jeej" type="Node2D" parent="."]
-position = Vector2(197, 145)
+[node name="BG" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_m5o3q")
+position = Vector2(219, 130)
+texture = ExtResource("9_313ib")
+
+[node name="BG2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_7wb1w")
+position = Vector2(219, 130)
+texture = ExtResource("9_313ib")
+
+[node name="Fake jeej" type="AnimatableBody2D" parent="."]
+position = Vector2(219, 129)
 scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 0
+sync_to_physics = false
 
 [node name="Skamtebord" type="Sprite2D" parent="Fake jeej"]
-position = Vector2(-9, -6)
+z_index = 1
+position = Vector2(-9, 1)
 texture = ExtResource("8_3xb2h")
 centered = false
 hframes = 2
 
 [node name="Jiji" type="Sprite2D" parent="Fake jeej"]
-position = Vector2(0, -3)
+z_index = 1
+position = Vector2(0, 4)
 texture = ExtResource("9_gdp1p")
 centered = false
 offset = Vector2(-7, -14)
@@ -141,5 +180,16 @@ offset = Vector2(-7, -14)
 max_angle = 0.3
 max_translation = Vector2(2, 2)
 max_scale = Vector2(0.2, 0.2)
+
+[node name="ColorRect2" type="ColorRect" parent="Fake jeej/Jiji"]
+offset_left = -12.5
+offset_top = -1.0
+offset_right = 1.5
+offset_bottom = 1.0
+color = Color(0.0588235, 0.0509804, 0.0666667, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fake jeej"]
+position = Vector2(1, -5.5)
+shape = SubResource("CircleShape2D_te5qj")
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

@@ -1,0 +1,137 @@
+[gd_scene load_steps=8 format=3 uid="uid://bt4f2y4xbh411"]
+
+[ext_resource type="PackedScene" uid="uid://dwiopopxqdt1r" path="res://Scenes/Level.tscn" id="1_8lv8n"]
+[ext_resource type="PackedScene" uid="uid://ic6m16p33gd0" path="res://Scenes/Postbox.tscn" id="2_06xxi"]
+[ext_resource type="PackedScene" uid="uid://bj6dokmjafvc0" path="res://Scenes/Rail.tscn" id="2_qvu3m"]
+[ext_resource type="PackedScene" uid="uid://cl1twgw2k0jjq" path="res://Scenes/Checkpoint.tscn" id="3_5kust"]
+[ext_resource type="PackedScene" uid="uid://c8gr0tgbbfku" path="res://Scenes/TerrainPolygon2D.tscn" id="4_j8fdy"]
+[ext_resource type="PackedScene" uid="uid://dlcrgyxcjk204" path="res://Scenes/Spike Trap.tscn" id="5_m3n1j"]
+[ext_resource type="PackedScene" uid="uid://bo53b30k73ytc" path="res://Scenes/Score Pickup.tscn" id="6_1duow"]
+
+[node name="Level" instance=ExtResource("1_8lv8n")]
+num_postboxes = 1
+envelope_types = PackedInt32Array(2)
+
+[node name="Postbox" parent="Post Boxes" index="0" instance=ExtResource("2_06xxi")]
+position = Vector2(1336, 48)
+
+[node name="Camera2D" parent="Player" index="12"]
+offset = Vector2(30, 0)
+
+[node name="Rail" parent="." index="4" instance=ExtResource("2_qvu3m")]
+position = Vector2(0, 108)
+points = PackedVector2Array(0, -4, 8, 4, 40, 4, 72, 4, 104, 4, 112, 12, 144, 12, 152, 20, 184, 20)
+
+[node name="Rail2" parent="." index="5" instance=ExtResource("2_qvu3m")]
+position = Vector2(184, 80)
+points = PackedVector2Array(7.99998, 8, 32, 8)
+
+[node name="Rail3" parent="." index="6" instance=ExtResource("2_qvu3m")]
+position = Vector2(216, 50)
+points = PackedVector2Array(7.99998, 8, 32, 8)
+
+[node name="Rail4" parent="." index="7" instance=ExtResource("2_qvu3m")]
+position = Vector2(256, 18)
+points = PackedVector2Array(7.99998, 8, 32, 8)
+
+[node name="Rail5" parent="." index="8" instance=ExtResource("2_qvu3m")]
+position = Vector2(296, -22)
+points = PackedVector2Array(7.99998, 8, 32, 8)
+
+[node name="Rail6" parent="." index="9" instance=ExtResource("2_qvu3m")]
+position = Vector2(344, -70)
+points = PackedVector2Array(7.99998, 8, 32, 8)
+
+[node name="Rail7" parent="." index="10" instance=ExtResource("2_qvu3m")]
+position = Vector2(392, -112)
+points = PackedVector2Array(7.99998, 8, 56, 8)
+
+[node name="Rail8" parent="." index="11" instance=ExtResource("2_qvu3m")]
+position = Vector2(480, -104)
+points = PackedVector2Array(0, 0, 48, 0, 96, 0, 144, 0, 192, 0, 240, 0, 288, 0, 328, -8)
+
+[node name="Checkpoint" parent="." index="12" instance=ExtResource("3_5kust")]
+position = Vector2(496, -121.081)
+
+[node name="TerrainPolygon2D" parent="." index="13" instance=ExtResource("4_j8fdy")]
+position = Vector2(480, -232)
+polygon = PackedVector2Array(16, -48, 976, -48, 976, 232, 544, 232, 464, 64, 0, 64, 0, -32)
+
+[node name="TerrainPolygon2D2" parent="." index="14" instance=ExtResource("4_j8fdy")]
+position = Vector2(480, -56)
+polygon = PackedVector2Array(0, -48, 8, -48, 8, -40, 328, -40, 328, -48, 336, -48, 544, 152, 952, 152, 952, 40, 976, 40, 976, 152, 976, 184, 544, 184, 336, 48, 0, -8)
+
+[node name="Spike Trap" parent="." index="15" instance=ExtResource("5_m3n1j")]
+position = Vector2(568, -104)
+
+[node name="Spike Trap2" parent="." index="16" instance=ExtResource("5_m3n1j")]
+position = Vector2(656, -104)
+
+[node name="Spike Trap3" parent="." index="17" instance=ExtResource("5_m3n1j")]
+position = Vector2(744, -104)
+
+[node name="Spike Trap6" parent="." index="18" instance=ExtResource("5_m3n1j")]
+position = Vector2(872, -48)
+rotation = 0.785397
+
+[node name="Spike Trap7" parent="." index="19" instance=ExtResource("5_m3n1j")]
+position = Vector2(912, -7.99997)
+rotation = 0.785397
+
+[node name="Spike Trap8" parent="." index="20" instance=ExtResource("5_m3n1j")]
+position = Vector2(952, 32)
+rotation = 0.785397
+
+[node name="Spike Trap4" parent="." index="21" instance=ExtResource("5_m3n1j")]
+position = Vector2(608, -168)
+rotation = 3.14159
+
+[node name="Spike Trap5" parent="." index="22" instance=ExtResource("5_m3n1j")]
+position = Vector2(704, -168)
+rotation = 3.14159
+
+[node name="Score Pickup" parent="." index="23" instance=ExtResource("6_1duow")]
+position = Vector2(512, -160)
+
+[node name="Score Pickup2" parent="." index="24" instance=ExtResource("6_1duow")]
+position = Vector2(528, -160)
+
+[node name="Score Pickup8" parent="." index="25" instance=ExtResource("6_1duow")]
+position = Vector2(168, 120)
+
+[node name="Score Pickup9" parent="." index="26" instance=ExtResource("6_1duow")]
+position = Vector2(200, 80)
+
+[node name="Score Pickup10" parent="." index="27" instance=ExtResource("6_1duow")]
+position = Vector2(232, 48)
+
+[node name="Score Pickup11" parent="." index="28" instance=ExtResource("6_1duow")]
+position = Vector2(272, 16)
+
+[node name="Score Pickup12" parent="." index="29" instance=ExtResource("6_1duow")]
+position = Vector2(312, -24)
+
+[node name="Score Pickup13" parent="." index="30" instance=ExtResource("6_1duow")]
+position = Vector2(360, -72)
+
+[node name="Score Pickup14" parent="." index="31" instance=ExtResource("6_1duow")]
+position = Vector2(416, -112)
+
+[node name="Score Pickup3" parent="." index="32" instance=ExtResource("6_1duow")]
+position = Vector2(608, -136)
+
+[node name="Score Pickup4" parent="." index="33" instance=ExtResource("6_1duow")]
+position = Vector2(704, -136)
+
+[node name="Score Pickup5" parent="." index="34" instance=ExtResource("6_1duow")]
+position = Vector2(936, -96)
+
+[node name="Score Pickup6" parent="." index="35" instance=ExtResource("6_1duow")]
+position = Vector2(968, -40)
+
+[node name="Score Pickup7" parent="." index="36" instance=ExtResource("6_1duow")]
+position = Vector2(1016, 24)
+
+[node name="Rail9" parent="." index="37" instance=ExtResource("2_qvu3m")]
+position = Vector2(840, -104)
+points = PackedVector2Array(0, 0, 32, 32, 56, 56, 80, 80, 112, 112, 152, 152, 192, 192, 280, 192, 328, 192, 368, 192, 400, 192, 424, 192)

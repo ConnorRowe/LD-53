@@ -1,0 +1,201 @@
+[gd_scene load_steps=9 format=3 uid="uid://dxtm3gm4j7q5e"]
+
+[ext_resource type="PackedScene" uid="uid://dwiopopxqdt1r" path="res://Scenes/Level.tscn" id="1_fm8i5"]
+[ext_resource type="PackedScene" uid="uid://ic6m16p33gd0" path="res://Scenes/Postbox.tscn" id="2_dcehu"]
+[ext_resource type="PackedScene" uid="uid://bj6dokmjafvc0" path="res://Scenes/Rail.tscn" id="2_xga33"]
+[ext_resource type="PackedScene" uid="uid://bt3tagxo7m5st" path="res://Scenes/Reverse Pad.tscn" id="3_6gd0v"]
+[ext_resource type="PackedScene" uid="uid://cl1twgw2k0jjq" path="res://Scenes/Checkpoint.tscn" id="5_scdr2"]
+[ext_resource type="Theme" uid="uid://cbkk2yn7dbh5n" path="res://Scenes/Menus/Theme.tres" id="6_3pc6u"]
+[ext_resource type="FontFile" uid="uid://ciuu7b2wvtap2" path="res://Font/ConsKindaBubblyBold.ttf" id="7_qsrdf"]
+[ext_resource type="PackedScene" uid="uid://bo53b30k73ytc" path="res://Scenes/Score Pickup.tscn" id="8_u7ogr"]
+
+[node name="Level" instance=ExtResource("1_fm8i5")]
+num_postboxes = 3
+envelope_types = PackedInt32Array(2, 1, 0)
+
+[node name="ColorRect" parent="Background Layer" index="0"]
+color = Color(0.227451, 0.0823529, 0.611765, 1)
+
+[node name="Postbox" parent="Post Boxes" index="0" instance=ExtResource("2_dcehu")]
+position = Vector2(520, -32)
+
+[node name="Postbox2" parent="Post Boxes" index="1" instance=ExtResource("2_dcehu")]
+position = Vector2(624, -96)
+
+[node name="Postbox3" parent="Post Boxes" index="2" instance=ExtResource("2_dcehu")]
+position = Vector2(768, -528)
+
+[node name="Rail" parent="." index="4" instance=ExtResource("2_xga33")]
+points = PackedVector2Array(8, 168, 48, 168, 88, 168, 128, 168, 168, 168, 208, 168, 248, 168)
+
+[node name="Rail7" parent="." index="5" instance=ExtResource("2_xga33")]
+position = Vector2(328, -232)
+points = PackedVector2Array(8, 168, 48, 168, 88, 168, 128, 168, 168, 168)
+
+[node name="Rail10" parent="." index="6" instance=ExtResource("2_xga33")]
+position = Vector2(592, -232)
+points = PackedVector2Array(8, 168, 48, 168, 88, 168, 128, 168, 168, 168)
+
+[node name="Reverse Pad" parent="Rail10" index="1" instance=ExtResource("3_6gd0v")]
+position = Vector2(160, 160)
+
+[node name="Rail2" parent="." index="7" instance=ExtResource("2_xga33")]
+position = Vector2(-8, -16)
+points = PackedVector2Array(272, 160, 304, 128)
+
+[node name="Reverse Pad" parent="Rail2" index="1" instance=ExtResource("3_6gd0v")]
+position = Vector2(309, 120)
+
+[node name="Rail4" parent="." index="8" instance=ExtResource("2_xga33")]
+position = Vector2(-8, -104)
+points = PackedVector2Array(272, 160, 304, 128)
+
+[node name="Reverse Pad" parent="Rail4" index="1" instance=ExtResource("3_6gd0v")]
+position = Vector2(309, 120)
+
+[node name="Rail6" parent="." index="9" instance=ExtResource("2_xga33")]
+position = Vector2(-8, -192)
+points = PackedVector2Array(272, 160, 304, 128)
+
+[node name="Rail3" parent="." index="10" instance=ExtResource("2_xga33")]
+position = Vector2(224, 96)
+points = PackedVector2Array(0, -8, 40, -8)
+
+[node name="Reverse Pad" parent="Rail3" index="1" instance=ExtResource("3_6gd0v")]
+position = Vector2(0, -16)
+rotation = 3.14159
+
+[node name="Rail8" parent="." index="11" instance=ExtResource("2_xga33")]
+position = Vector2(496, 8)
+points = PackedVector2Array(0, -8, 48, -8)
+
+[node name="Rail9" parent="." index="12" instance=ExtResource("2_xga33")]
+position = Vector2(552, -16)
+points = PackedVector2Array(0, -8, 48, -8)
+
+[node name="Rail5" parent="." index="13" instance=ExtResource("2_xga33")]
+position = Vector2(224, 8)
+points = PackedVector2Array(0, -8, 40, -8)
+
+[node name="Reverse Pad" parent="Rail5" index="1" instance=ExtResource("3_6gd0v")]
+position = Vector2(0, -16)
+rotation = 3.14159
+
+[node name="Rail12" parent="." index="14" instance=ExtResource("2_xga33")]
+position = Vector2(434, -318)
+points = PackedVector2Array(272, 160, 304, 128)
+
+[node name="Reverse Pad" parent="Rail12" index="1" instance=ExtResource("3_6gd0v")]
+position = Vector2(309, 120)
+
+[node name="Rail13" parent="." index="15" instance=ExtResource("2_xga33")]
+position = Vector2(434, -422)
+points = PackedVector2Array(272, 160, 304, 128)
+
+[node name="Reverse Pad" parent="Rail13" index="1" instance=ExtResource("3_6gd0v")]
+position = Vector2(309, 120)
+
+[node name="Rail14" parent="." index="16" instance=ExtResource("2_xga33")]
+position = Vector2(666, -110)
+points = PackedVector2Array(0, -8, 40, -8)
+
+[node name="Reverse Pad" parent="Rail14" index="1" instance=ExtResource("3_6gd0v")]
+position = Vector2(0, -16)
+rotation = 3.14159
+
+[node name="Rail15" parent="." index="17" instance=ExtResource("2_xga33")]
+position = Vector2(666, -214)
+points = PackedVector2Array(0, -8, 40, -8)
+
+[node name="Reverse Pad" parent="Rail15" index="1" instance=ExtResource("3_6gd0v")]
+position = Vector2(0, -16)
+rotation = 3.14159
+
+[node name="Rail16" parent="." index="18" instance=ExtResource("2_xga33")]
+position = Vector2(434, -526)
+points = PackedVector2Array(272, 160, 304, 128)
+
+[node name="Reverse Pad" parent="Rail16" index="1" instance=ExtResource("3_6gd0v")]
+position = Vector2(309, 120)
+
+[node name="Rail17" parent="." index="19" instance=ExtResource("2_xga33")]
+position = Vector2(434, -632)
+points = PackedVector2Array(272, 160, 304, 128)
+
+[node name="Rail18" parent="." index="20" instance=ExtResource("2_xga33")]
+position = Vector2(666, -318)
+points = PackedVector2Array(0, -8, 40, -8)
+
+[node name="Reverse Pad" parent="Rail18" index="1" instance=ExtResource("3_6gd0v")]
+position = Vector2(0, -16)
+rotation = 3.14159
+
+[node name="Rail19" parent="." index="21" instance=ExtResource("2_xga33")]
+position = Vector2(666, -422)
+points = PackedVector2Array(0, -8, 40, -8)
+
+[node name="Reverse Pad" parent="Rail19" index="1" instance=ExtResource("3_6gd0v")]
+position = Vector2(0, -16)
+rotation = 3.14159
+
+[node name="Checkpoint" parent="." index="22" instance=ExtResource("5_scdr2")]
+position = Vector2(400, -80)
+
+[node name="Label2" type="Label" parent="." index="23"]
+offset_left = 144.0
+offset_top = 96.0
+offset_right = 228.0
+offset_bottom = 144.0
+theme = ExtResource("6_3pc6u")
+theme_override_colors/font_color = Color(0.576471, 0.780392, 0.890196, 1)
+theme_override_fonts/font = ExtResource("7_qsrdf")
+text = "Welcome to Tall Tower"
+autowrap_mode = 3
+
+[node name="Score Pickup" parent="." index="24" instance=ExtResource("8_u7ogr")]
+position = Vector2(72, 158.37)
+
+[node name="Score Pickup2" parent="." index="25" instance=ExtResource("8_u7ogr")]
+position = Vector2(80, 144)
+
+[node name="Score Pickup3" parent="." index="26" instance=ExtResource("8_u7ogr")]
+position = Vector2(88, 128)
+
+[node name="Score Pickup4" parent="." index="27" instance=ExtResource("8_u7ogr")]
+position = Vector2(96, 144)
+
+[node name="Score Pickup5" parent="." index="28" instance=ExtResource("8_u7ogr")]
+position = Vector2(104, 158.37)
+
+[node name="Score Pickup6" parent="." index="29" instance=ExtResource("8_u7ogr")]
+position = Vector2(320, -96)
+
+[node name="Score Pickup7" parent="." index="30" instance=ExtResource("8_u7ogr")]
+position = Vector2(315, -88)
+
+[node name="Score Pickup8" parent="." index="31" instance=ExtResource("8_u7ogr")]
+position = Vector2(325, -88)
+
+[node name="Score Pickup9" parent="." index="32" instance=ExtResource("8_u7ogr")]
+position = Vector2(581, -40)
+
+[node name="Score Pickup10" parent="." index="33" instance=ExtResource("8_u7ogr")]
+position = Vector2(576, -32)
+
+[node name="Score Pickup11" parent="." index="34" instance=ExtResource("8_u7ogr")]
+position = Vector2(586, -32)
+
+[node name="Score Pickup12" parent="." index="35" instance=ExtResource("8_u7ogr")]
+position = Vector2(688, -128)
+
+[node name="Score Pickup13" parent="." index="36" instance=ExtResource("8_u7ogr")]
+position = Vector2(688, -440)
+
+[node name="Score Pickup14" parent="." index="37" instance=ExtResource("8_u7ogr")]
+position = Vector2(784, -480)
+
+[node name="Score Pickup15" parent="." index="38" instance=ExtResource("8_u7ogr")]
+position = Vector2(776, -480)
+
+[node name="Score Pickup16" parent="." index="39" instance=ExtResource("8_u7ogr")]
+position = Vector2(768, -480)

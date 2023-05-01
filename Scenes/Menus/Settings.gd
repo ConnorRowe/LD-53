@@ -16,6 +16,7 @@ func _ready():
 	master_h_slider.value = db_to_linear(AudioServer.get_bus_volume_db(master_bus))
 	music_h_slider.value = db_to_linear(AudioServer.get_bus_volume_db(music_bus))
 	sfx_h_slider.value = db_to_linear(AudioServer.get_bus_volume_db(sfx_bus))
+	fullscreen_check_button.button_pressed = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 
 func _on_master_h_slider_value_changed(value):
 	vol_value_changed(value, master_bus)

@@ -23,3 +23,9 @@ func _ready():
 		config_file.set_value("jiji", "max_level", 0)
 		config_file.save(save_path)
 
+func _input(event):
+	if event.is_action_released("fullscreen"):
+		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)

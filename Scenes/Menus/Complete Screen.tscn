@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3sf0kuycgoqg"]
+
+[ext_resource type="Theme" uid="uid://cbkk2yn7dbh5n" path="res://Scenes/Menus/Theme.tres" id="1_pgcl0"]
+[ext_resource type="Script" path="res://Scenes/Menus/Complete Screen.gd" id="2_r7l66"]
+[ext_resource type="Shader" path="res://Shaders/3 Colour Shift.gdshader" id="2_vyo1o"]
+[ext_resource type="FontFile" uid="uid://ciuu7b2wvtap2" path="res://Font/ConsKindaBubblyBold.ttf" id="3_qxxsn"]
+[ext_resource type="PackedScene" uid="uid://fbywgpksk4j0" path="res://Scenes/Wobbler.tscn" id="4_5joxm"]
+[ext_resource type="PackedScene" uid="uid://bqppsekdj4sp1" path="res://Scenes/Button.tscn" id="6_5tvjm"]
+[ext_resource type="AudioStream" uid="uid://balponlnxyt1h" path="res://Sounds/Nev purr.ogg" id="7_wu121"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ewlno"]
+shader = ExtResource("2_vyo1o")
+shader_parameter/colour_a = Color(0.933333, 0.721569, 0.705882, 1)
+shader_parameter/colour_b = Color(0.576471, 0.780392, 0.890196, 1)
+shader_parameter/colour_c = Color(0.847059, 0.329412, 0.321569, 1)
+
+[node name="Complete Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pgcl0")
+script = ExtResource("2_r7l66")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0588235, 0.0509804, 0.0666667, 1)
+
+[node name="Label" type="Label" parent="."]
+material = SubResource("ShaderMaterial_ewlno")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -91.0
+offset_top = 7.0
+offset_right = 91.0
+offset_bottom = 30.0
+grow_horizontal = 2
+pivot_offset = Vector2(91, 12)
+theme_override_fonts/font = ExtResource("3_qxxsn")
+text = "CONGRATULATIONS"
+horizontal_alignment = 1
+
+[node name="Wobbler" parent="Label" instance=ExtResource("4_5joxm")]
+max_translation = Vector2(8, 8)
+max_scale = Vector2(0.5, 0.5)
+decay = 0.5
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -127.0
+offset_top = 35.0
+offset_right = 127.0
+offset_bottom = 96.0
+grow_horizontal = 2
+text = "As Jiji makes her final delivery she thinks of the warm bed she has waiting for her at home. \"Time for rest\" she whispers."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -127.0
+offset_top = 91.0
+offset_right = 127.0
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.337255, 0.447059, 0.882353, 1)
+text = "...
+Thank you for playing my game all the way to the end, you're the best!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 101.0
+offset_right = 129.0
+offset_bottom = 162.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.337255, 0.447059, 0.882353, 1)
+text = "- Connor"
+horizontal_alignment = 2
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="Return" parent="." instance=ExtResource("6_5tvjm")]
+offset_left = 5.0
+offset_top = 145.0
+offset_right = 77.0
+offset_bottom = 175.0
+text = "Return
+"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_wu121")
+volume_db = 9.454
+autoplay = true
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="Label" to="." method="_on_label_mouse_entered"]
+[connection signal="pressed" from="Return" to="." method="_on_return_pressed"]

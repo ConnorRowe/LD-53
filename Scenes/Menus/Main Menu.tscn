@@ -1,11 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnfmen8i72k7k"]
+[gd_scene load_steps=9 format=3 uid="uid://cnfmen8i72k7k"]
 
 [ext_resource type="Theme" uid="uid://cbkk2yn7dbh5n" path="res://Scenes/Menus/Theme.tres" id="1_ctd5v"]
 [ext_resource type="Script" path="res://Scenes/Menus/Main Menu.gd" id="2_7ccdb"]
-[ext_resource type="Script" path="res://Scenes/Menus/Button.gd" id="3_ah588"]
-[ext_resource type="FontFile" uid="uid://ciuu7b2wvtap2" path="res://Font/ConsKindaBubblyBold.ttf" id="3_p4r22"]
+[ext_resource type="Shader" path="res://Shaders/3 Colour Shift.gdshader" id="3_3f18w"]
 [ext_resource type="PackedScene" uid="uid://fbywgpksk4j0" path="res://Scenes/Wobbler.tscn" id="4_1j2y1"]
 [ext_resource type="Texture2D" uid="uid://bgajj7sa8rgtt" path="res://icon.svg" id="4_b2cie"]
+[ext_resource type="Texture2D" uid="uid://chl3wgngeorh6" path="res://Textures/logo.png" id="6_o5m77"]
+[ext_resource type="PackedScene" uid="uid://bqppsekdj4sp1" path="res://Scenes/Button.tscn" id="7_2w07q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_td7q7"]
+shader = ExtResource("3_3f18w")
+shader_parameter/colour_a = Color(0.933333, 0.721569, 0.705882, 1)
+shader_parameter/colour_b = Color(0.576471, 0.780392, 0.890196, 1)
+shader_parameter/colour_c = Color(0.847059, 0.329412, 0.321569, 1)
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -26,47 +33,30 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0588235, 0.0509804, 0.0666667, 1)
 
-[node name="Label" type="Label" parent="Background"]
-layout_mode = 0
-offset_left = 104.0
-offset_top = 58.0
-offset_right = 210.0
-offset_bottom = 81.0
-theme_override_colors/font_color = Color(0.576471, 0.780392, 0.890196, 1)
-theme_override_fonts/font = ExtResource("3_p4r22")
-text = "Ludum Dare 53"
-
 [node name="Label2" type="Label" parent="Background"]
-layout_mode = 0
-offset_left = 202.0
-offset_top = 163.0
-offset_right = 315.0
-offset_bottom = 186.0
-theme_override_colors/font_color = Color(0.337255, 0.447059, 0.882353, 1)
-text = "Connor Magson 2023"
-
-[node name="Button" type="Button" parent="."]
+material = SubResource("ShaderMaterial_td7q7")
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -44.0
-offset_top = 1.0
-offset_right = 45.0
-offset_bottom = 25.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-text = "Enter"
-script = ExtResource("3_ah588")
-
-[node name="Wobbler" parent="Button" instance=ExtResource("4_1j2y1")]
-max_scale = Vector2(0.1, 0.1)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -92.0
+offset_top = -66.0
+offset_right = -2.0
+offset_bottom = -1.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -4
+text = "Made by Connor Magson in 72 hours for Ludum Dare 53"
+horizontal_alignment = 2
+vertical_alignment = 2
+autowrap_mode = 3
+clip_text = true
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(50, 88)
+position = Vector2(50, 133)
 scale = Vector2(0.226563, 0.226563)
 texture = ExtResource("4_b2cie")
 
@@ -76,6 +66,72 @@ max_translation = Vector2(7, 7)
 max_scale = Vector2(0.2, 0.2)
 decay = 0.6
 
-[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_entered" from="Button" to="Button" method="_on_mouse_entered"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="Godot Button" type="Button" parent="Icon"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -62.0
+offset_top = -62.0
+offset_right = 62.0
+offset_bottom = 62.0
+
+[node name="Label3" type="Label" parent="Icon"]
+material = SubResource("ShaderMaterial_td7q7")
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -251.586
+offset_top = -71.0
+offset_right = -183.586
+offset_bottom = -28.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(4.405, 4.405)
+theme = ExtResource("1_ctd5v")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -4
+text = "Made with Godot 4!"
+autowrap_mode = 3
+clip_text = true
+
+[node name="Settings Button" parent="." instance=ExtResource("7_2w07q")]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 4.0
+offset_right = 317.0
+offset_bottom = 42.0
+text = "Settings"
+
+[node name="Enter Button" parent="." instance=ExtResource("7_2w07q")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.5
+offset_top = -46.0
+offset_right = 44.5
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Enter"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.0
+offset_top = 8.0
+offset_right = 79.0
+offset_bottom = 120.0
+grow_horizontal = 2
+texture = ExtResource("6_o5m77")
+
+[node name="Wobbler" parent="TextureRect" instance=ExtResource("4_1j2y1")]
+
+[connection signal="mouse_entered" from="Icon/Godot Button" to="." method="_on_godot_button_mouse_entered"]
+[connection signal="pressed" from="Icon/Godot Button" to="." method="_on_godot_button_pressed"]
+[connection signal="pressed" from="Settings Button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Enter Button" to="." method="_on_enter_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://s3wrs1oppwo2"]
+[gd_scene load_steps=9 format=3 uid="uid://s3wrs1oppwo2"]
 
 [ext_resource type="PackedScene" uid="uid://dwiopopxqdt1r" path="res://Scenes/Level.tscn" id="1_c83ac"]
 [ext_resource type="PackedScene" uid="uid://c8gr0tgbbfku" path="res://Scenes/TerrainPolygon2D.tscn" id="2_j7kca"]
@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://cbkk2yn7dbh5n" path="res://Scenes/Menus/Theme.tres" id="4_js4qk"]
 [ext_resource type="PackedScene" uid="uid://bj6dokmjafvc0" path="res://Scenes/Rail.tscn" id="5_ef8hx"]
 [ext_resource type="PackedScene" uid="uid://cl1twgw2k0jjq" path="res://Scenes/Checkpoint.tscn" id="6_cbiga"]
+[ext_resource type="PackedScene" uid="uid://bo53b30k73ytc" path="res://Scenes/Score Pickup.tscn" id="8_o0sq0"]
 
 [node name="Level" instance=ExtResource("1_c83ac")]
 num_postboxes = 1
@@ -69,14 +70,24 @@ autowrap_mode = 3
 [node name="Label2" type="Label" parent="Tutorials" index="1"]
 layout_mode = 0
 offset_left = 320.0
-offset_top = 68.0
+offset_top = 32.0
 offset_right = 404.0
-offset_bottom = 116.0
+offset_bottom = 80.0
 theme_override_colors/font_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
 text = "jump onto a rail to grind!"
 autowrap_mode = 3
 
-[node name="Label3" type="Label" parent="Tutorials" index="2"]
+[node name="Label7" type="Label" parent="Tutorials" index="2"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 68.0
+offset_right = 436.0
+offset_bottom = 116.0
+theme_override_colors/font_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
+text = "(space / up / W / click)"
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="Tutorials" index="3"]
 layout_mode = 0
 offset_left = 564.0
 offset_top = 68.0
@@ -86,7 +97,7 @@ theme_override_colors/font_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
 text = "but don't fall..."
 autowrap_mode = 3
 
-[node name="Label4" type="Label" parent="Tutorials" index="3"]
+[node name="Label4" type="Label" parent="Tutorials" index="4"]
 layout_mode = 0
 offset_left = 958.0
 offset_top = 68.0
@@ -96,7 +107,7 @@ theme_override_colors/font_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
 text = "this is a checkpoint, you'll come back here if you fall"
 autowrap_mode = 3
 
-[node name="Label5" type="Label" parent="Tutorials" index="4"]
+[node name="Label5" type="Label" parent="Tutorials" index="5"]
 layout_mode = 0
 offset_left = 1520.0
 offset_top = 240.0
@@ -106,7 +117,7 @@ theme_override_colors/font_color = Color(0.0588235, 0.0509804, 0.0666667, 1)
 text = "press the jump button while in the air to deliver!"
 autowrap_mode = 3
 
-[node name="Label6" type="Label" parent="Tutorials" index="5"]
+[node name="Label6" type="Label" parent="Tutorials" index="6"]
 layout_mode = 0
 offset_left = 1824.0
 offset_top = 282.0
@@ -130,3 +141,21 @@ points = PackedVector2Array(808, 168, 856, 168, 912, 168, 960, 168, 1008, 160)
 
 [node name="Checkpoint" parent="." index="17" instance=ExtResource("6_cbiga")]
 position = Vector2(512, 72)
+
+[node name="Score Pickup" parent="." index="18" instance=ExtResource("8_o0sq0")]
+position = Vector2(248, 64)
+
+[node name="Score Pickup2" parent="." index="19" instance=ExtResource("8_o0sq0")]
+position = Vector2(320, 64)
+
+[node name="Score Pickup3" parent="." index="20" instance=ExtResource("8_o0sq0")]
+position = Vector2(432, 48)
+
+[node name="Score Pickup4" parent="." index="21" instance=ExtResource("8_o0sq0")]
+position = Vector2(704, 51)
+
+[node name="Score Pickup5" parent="." index="22" instance=ExtResource("8_o0sq0")]
+position = Vector2(720, 70)
+
+[node name="Score Pickup6" parent="." index="23" instance=ExtResource("8_o0sq0")]
+position = Vector2(736, 89)
