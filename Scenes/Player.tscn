@@ -93,6 +93,7 @@ position = Vector2(0, 1)
 emitting = false
 amount = 7
 lifetime = 1.5
+fixed_fps = 30
 texture = ExtResource("5_5h1ls")
 direction = Vector2(-1, 0)
 spread = 21.12

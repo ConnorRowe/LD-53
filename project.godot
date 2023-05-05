@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.0", "GL Compatibility")
 boot_splash/bg_color=Color(0.0588235, 0.0509804, 0.0666667, 1)
 boot_splash/image="res://Textures/logo.png"
 boot_splash/use_filter=false
-config/icon="res://icon.svg"
+config/icon="res://Textures/icon.png"
 
 [autoload]
 
@@ -60,6 +60,7 @@ fullscreen={
 
 [physics]
 
+2d/run_on_separate_thread=true
 2d/default_gravity=653.333
 
 [rendering]

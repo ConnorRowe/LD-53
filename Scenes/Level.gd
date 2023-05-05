@@ -20,6 +20,10 @@ func _ready():
 			postbox.made_delivery.connect(on_delivery_made)
 		gui.add_envelopes(envelope_types)
 		gui.update_score(score)
+	
+	var tmr = get_tree().create_timer(0.25)
+	await tmr.timeout
+	$"Force Compile Stuff".visible = false
 
 func on_delivery_made(accuracy):
 	gui.show_hit_text(accuracy)

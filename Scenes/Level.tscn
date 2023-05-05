@@ -1,8 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwiopopxqdt1r"]
+[gd_scene load_steps=14 format=3 uid="uid://dwiopopxqdt1r"]
 
 [ext_resource type="Script" path="res://Scenes/Level.gd" id="1_44xn3"]
 [ext_resource type="PackedScene" uid="uid://bs45k4rpv0jr8" path="res://Scenes/Player.tscn" id="1_aori0"]
 [ext_resource type="PackedScene" uid="uid://cpxqlwi423cxe" path="res://Scenes/GUI.tscn" id="2_ep6kg"]
+[ext_resource type="Texture2D" uid="uid://516qtx2v84mw" path="res://Textures/dust.png" id="4_is2hw"]
+[ext_resource type="Shader" path="res://Shaders/Postbox.gdshader" id="5_wirer"]
+[ext_resource type="Texture2D" uid="uid://wlxv5acfpr6h" path="res://Textures/postbox_bg_effect.png" id="6_5kfxt"]
+[ext_resource type="Texture2D" uid="uid://y30fj3ar6co7" path="res://Textures/confetti.png" id="7_fvjke"]
+[ext_resource type="Shader" path="res://Shaders/Checkpoint.gdshader" id="8_i2xat"]
+[ext_resource type="Texture2D" uid="uid://cs88olop4d8rd" path="res://Textures/checkpoint_bg_effect.png" id="9_j214y"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2sg04"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ktefx"]
+shader = ExtResource("5_wirer")
+shader_parameter/colour_a = Color(0.847059, 0.329412, 0.321569, 1)
+shader_parameter/colour_b = Color(0.933333, 0.721569, 0.705882, 1)
+shader_parameter/threshhold = 0.08
+shader_parameter/progress = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jyihx"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8rouj"]
+shader = ExtResource("8_i2xat")
+shader_parameter/colour = Color(0.933333, 0.721569, 0.705882, 1)
+shader_parameter/threshhold = 0.05
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_44xn3")
@@ -32,6 +62,92 @@ position = Vector2(17, 89)
 offset = Vector2(0, -40)
 process_callback = 0
 position_smoothing_enabled = true
+
+[node name="Force Compile Stuff" type="Node2D" parent="."]
+position = Vector2(54, 55)
+
+[node name="Dust Particles" type="CPUParticles2D" parent="Force Compile Stuff"]
+self_modulate = Color(1, 1, 1, 0.290196)
+material = SubResource("CanvasItemMaterial_2sg04")
+position = Vector2(0, 1)
+amount = 7
+lifetime = 1.5
+fixed_fps = 30
+texture = ExtResource("4_is2hw")
+direction = Vector2(-1, 0)
+spread = 21.12
+gravity = Vector2(0, -50)
+initial_velocity_min = 61.22
+initial_velocity_max = 102.04
+damping_min = 50.0
+damping_max = 67.35
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="BG" type="Sprite2D" parent="Force Compile Stuff"]
+material = SubResource("ShaderMaterial_ktefx")
+position = Vector2(0, 1.5)
+texture = ExtResource("6_5kfxt")
+
+[node name="Confetti1" type="CPUParticles2D" parent="Force Compile Stuff"]
+self_modulate = Color(1, 1, 1, 0.290196)
+material = SubResource("CanvasItemMaterial_jyihx")
+position = Vector2(0, 4)
+amount = 60
+lifetime = 4.0
+explosiveness = 1.0
+texture = ExtResource("7_fvjke")
+emission_shape = 1
+emission_sphere_radius = 4.0
+particle_flag_align_y = true
+direction = Vector2(0, -1)
+gravity = Vector2(0, 735)
+initial_velocity_min = 173.46
+initial_velocity_max = 397.95
+damping_min = 24.49
+damping_max = 48.98
+
+[node name="Confetti2" type="CPUParticles2D" parent="Force Compile Stuff"]
+self_modulate = Color(1, 1, 1, 0.290196)
+material = SubResource("CanvasItemMaterial_jyihx")
+position = Vector2(0, 4)
+amount = 80
+lifetime = 4.0
+explosiveness = 1.0
+texture = ExtResource("7_fvjke")
+emission_shape = 1
+emission_sphere_radius = 4.0
+particle_flag_align_y = true
+direction = Vector2(0, -1)
+gravity = Vector2(0, 735)
+initial_velocity_min = 173.46
+initial_velocity_max = 397.95
+damping_min = 24.49
+damping_max = 48.98
+anim_offset_max = 0.4286
+
+[node name="Confetti3" type="CPUParticles2D" parent="Force Compile Stuff"]
+self_modulate = Color(1, 1, 1, 0.290196)
+material = SubResource("CanvasItemMaterial_jyihx")
+position = Vector2(0, 4)
+amount = 120
+lifetime = 4.0
+explosiveness = 1.0
+texture = ExtResource("7_fvjke")
+emission_shape = 1
+emission_sphere_radius = 4.0
+particle_flag_align_y = true
+direction = Vector2(0, -1)
+gravity = Vector2(0, 735)
+initial_velocity_min = 173.46
+initial_velocity_max = 397.95
+damping_min = 24.49
+damping_max = 48.98
+anim_offset_max = 1.0
+
+[node name="BG2" type="Sprite2D" parent="Force Compile Stuff"]
+material = SubResource("ShaderMaterial_8rouj")
+texture = ExtResource("9_j214y")
 
 [connection signal="picked_up_score" from="Player" to="." method="_on_player_picked_up_score"]
 [connection signal="reached_checkpoint" from="Player" to="." method="_on_player_reached_checkpoint"]
